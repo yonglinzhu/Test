@@ -1,0 +1,358 @@
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td, img {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+}
+body, button, input, select, textarea {
+    font: 14px "Microsoft Yahei",tahoma,Srial,helvetica,sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+}
+em {
+    font-style: normal;
+}
+ul, ol {
+    list-style: outside none none;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+a:hover {
+    color: #f23e47;
+    text-decoration: none;
+    transition: all 0.3s ease-in 0s;
+}
+img {
+    border: 0 none;
+    outline-width: 0;
+    vertical-align: top;
+}
+.clearfix::after {
+    clear: both;
+    content: "鈥�;
+    display: block;
+    height: 0;
+}
+.clearfix {
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+button {
+    overflow: visible;
+}
+button, select {
+    text-transform: none;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+}
+button[disabled], html input[disabled] {
+    cursor: default;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0 none;
+    padding: 0;
+}
+input {
+    line-height: normal;
+}
+.form-control {
+    display: block;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+.form-control:focus {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+    outline: 0 none;
+}
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes bounceOut {
+    100% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    30% {
+        transform: scale(1.03);
+    }
+    0% {
+        transform: scale(1);
+    }
+}
+@keyframes bounceOut {
+    100% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    30% {
+        transform: scale(1.03);
+    }
+    0% {
+        transform: scale(1);
+    }
+}
+@keyframes zoomInDown {
+    0% {
+        animation-timing-function: ease-in-out;
+        opacity: 0;
+        transform: scale(0.1) translateY(-2000px);
+    }
+    60% {
+        animation-timing-function: ease-out;
+        opacity: 1;
+        transform: scale(0.475) translateY(60px);
+    }
+}
+@keyframes zoomInDown {
+    0% {
+        animation-timing-function: ease-in-out;
+        opacity: 0;
+        transform: scale(0.1) translateY(-2000px);
+    }
+    60% {
+        animation-timing-function: ease-out;
+        opacity: 1;
+        transform: scale(0.475) translateY(60px);
+    }
+}
+@keyframes fadeInUpBig {
+    0% {
+        opacity: 0;
+        transform: translateY(2000px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes fadeInUpBig {
+    0% {
+        opacity: 0;
+        transform: translateY(2000px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes zoomInLeft {
+    0% {
+        animation-timing-function: ease-in-out;
+        opacity: 0;
+        transform: scale(0.1) translateX(-2000px);
+    }
+    60% {
+        animation-timing-function: ease-out;
+        opacity: 1;
+        transform: scale(0.475) translateX(48px);
+    }
+}
+@keyframes zoomInLeft {
+    0% {
+        animation-timing-function: ease-in-out;
+        opacity: 0;
+        transform: scale(0.1) translateX(-2000px);
+    }
+    60% {
+        animation-timing-function: ease-out;
+        opacity: 1;
+        transform: scale(0.475) translateX(48px);
+    }
+}
+@keyframes rollIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%) rotate(-120deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px) rotate(0deg);
+    }
+}
+@keyframes rollIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%) rotate(-120deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px) rotate(0deg);
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0px);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0px);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.chk_4 {
+    left: 25px;
+    position: relative;
+    top: -3px;
+}
+.chk_4 + label {
+    background: #bdbdbd none repeat scroll 0 0;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    height: 21px;
+    line-height: 21px;
+    margin-left: -5px;
+    position: relative;
+    width: 49px;
+}
+.chk_4 + label::before {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 100%;
+    color: #fff;
+    content: " ";
+    height: 19px;
+    left: 29px;
+    position: absolute;
+    top: 1px;
+    width: 19px;
+    z-index: 99999;
+}
+.chk_4 + label::after {
+    color: white;
+    content: "寮�;
+    left: 8px;
+    position: absolute;
+}
+.chk_4:checked + label {
+    background: #00b38b none repeat scroll 0 0;
+}
+.chk_4:checked + label::after {
+    content: "鍏�;
+    left: 24px;
+}
+.chk_4:checked + label::before {
+    content: " ";
+    left: 1px;
+    position: absolute;
+    z-index: 99999;
+}
+.chk_4 + label::after {
+    left: 9px;
+}
+select, .select_ui {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #d8d8d8;
+    cursor: inherit;
+    display: inline-block;
+    height: 22px;
+    padding: 5px 0;
+    position: relative;
+    text-align: left;
+    text-indent: 15px;
+    vertical-align: middle;
+    width: 162px;
+}
+select:focus, .select_focus_ui {
+    border-color: #d8d8d8;
+}
+.select_ui .select_arrow {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_other.png") no-repeat scroll -2px 0;
+    display: block;
+    height: 5px;
+    overflow: hidden;
+    position: absolute;
+    right: 13px;
+    top: 14px;
+    width: 9px;
+}
+.select_ui .select_text_ui {
+    color: #454545;
+    display: block;
+    line-height: normal;
+    margin-right: 20px;
+    overflow: hidden;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+.select_ui select, .select_ui .select_poswrap {
+    border: 0 none;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.select_ui select {
+    background: #fff none repeat scroll 0 0;
+    box-sizing: border-box;
+    color: inherit;
+    font: inherit;
+    height: 100%;
+    min-width: 100%;
+    opacity: 0;
+}
+.select_ui select option {
+    padding: 5px 10px;
+}
+
+.colorInit{
+	 color: red;
+}
+
+.inputColorInit{
+	 color: black;
+}

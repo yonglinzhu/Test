@@ -1,0 +1,2545 @@
+
+.super-header {
+    position: relative;
+    z-index: 9;
+}
+
+.superCtab {
+    position: relative;
+    z-index: 2;
+}
+
+.superWrap {
+    min-width: 1000px;
+    overflow: hidden;
+    position: relative;
+}
+
+.super-side-menu {
+    background: #313541 none repeat scroll 0 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 205px;
+    z-index: 8;
+}
+
+.super-content {
+    background: #fff none repeat scroll 0 0;
+    position: relative;
+    z-index: 6;
+}
+
+.superContent {
+    background: #fff none repeat scroll 0 0;
+    margin-left: 205px;
+}
+
+.superCtabBot {
+}
+
+.logo {
+    background: #00b38b none repeat scroll 0 0;
+    border-bottom: 1px solid #00b38b;
+    height: 86px;
+    width: 205px;
+}
+
+.side-menu {
+    width: 100%;
+}
+
+.side-menu ul li {
+    height: 53px;
+    line-height: 53px;
+}
+
+.side-menu ul li a {
+    color: #707783;
+    display: block;
+    font-size: 16px;
+    height: 53px;
+    width: 100%;
+}
+
+.side-menu ul li.on a, .side-menu ul li a:hover {
+    background: #272a34 none repeat scroll 0 0;
+    color: #f6f5fa;
+}
+
+.side-menu ul li i {
+    background: rgba(0, 0, 0, 0) url("../images/ico_left_menu.png") no-repeat scroll 0 0;
+    display: block;
+    float: left;
+    height: 20px;
+    margin: 16px 14px 0 28px;
+    width: 18px;
+}
+
+.side-menu ul li i.ico-1 {
+    background-position: -19px 2px;
+}
+
+.side-menu ul li.on a i.ico-1, .side-menu ul li a:hover i.ico-1 {
+    background-position: 0 2px;
+}
+
+.side-menu ul li i.ico-2 {
+    background-position: -19px -57px;
+}
+
+.side-menu ul li.on a i.ico-2, .side-menu ul li a:hover i.ico-2 {
+    background-position: 0 -57px;
+}
+
+.side-menu ul li i.ico-3 {
+    background-position: -19px -113px;
+}
+
+.side-menu ul li.on a i.ico-3, .side-menu ul li a:hover i.ico-3 {
+    background-position: 0 -113px;
+}
+
+.side-menu ul li i.ico-4 {
+    background-position: -19px -171px;
+}
+
+.side-menu ul li.on a i.ico-4, .side-menu ul li a:hover i.ico-4 {
+    background-position: 0 -171px;
+}
+
+.side-menu ul li i.ico-5 {
+    background-position: -19px -228px;
+}
+
+.side-menu ul li.on a i.ico-5, .side-menu ul li a:hover i.ico-5 {
+    background-position: 0 -228px;
+}
+
+.side-menu ul li i.ico-6 {
+    background-position: -19px -283px;
+}
+
+.side-menu ul li.on a i.ico-6, .side-menu ul li a:hover i.ico-6 {
+    background-position: 0 -283px;
+}
+
+.side-menu ul li i.ico-7 {
+    background-position: -19px -338px;
+}
+
+.side-menu ul li.on a i.ico-7, .side-menu ul li a:hover i.ico-7 {
+    background-position: 0 -338px;
+}
+
+.side-menu ul li i.ico-8 {
+    background-position: -19px -380px;
+    margin-top: 18px;
+}
+
+.side-menu ul li.on a i.ico-8, .side-menu ul li a:hover i.ico-8 {
+    background-position: 0 -380px;
+}
+
+.side-menu ul li i.ico-9 {
+    background-position: -19px -411px;
+    margin-top: 20px;
+}
+
+.side-menu ul li.on a i.ico-9, .side-menu ul li a:hover i.ico-9 {
+    background-position: 0 -411px;
+}
+
+.super-header {
+    border-bottom: 1px solid #e5e4ee;
+    height: 86px;
+}
+
+.super-header h2 {
+    color: #454545;
+    display: block;
+    float: left;
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 86px;
+    margin-left: 2%;
+}
+
+.super-header .head-right {
+    float: right;
+    margin: 33px 19px 0 0;
+}
+
+.head-right i.ico-user {
+    background: rgba(0, 0, 0, 0) url(../img/ico_fabu_other.png) no-repeat scroll 0 -24px;
+    display: inline-block;
+    font-size: 16px;
+    height: 15px;
+    margin-right: 9px;
+    position: relative;
+    top: 3px;
+    width: 14px;
+}
+
+.userslideDown {
+    display: inline-block;
+    height: 50px;
+    position: relative;
+}
+
+.userslideDown a {
+    color: #454545;
+}
+
+.userslideDown a i.ico-tri {
+    background: rgba(0, 0, 0, 0) url(../../style/images/ico_fabu_other.png) no-repeat scroll -2px 0;
+    display: inline-block;
+    height: 5px;
+    margin: 0 0 0 8px;
+    position: relative;
+    top: -3px;
+    transition: transform 0.4s ease-out 0s;
+    width: 9px;
+}
+
+.userslideDown a.tri i.ico-tri {
+    transform: rotate(180deg);
+}
+
+.slidedownBox {
+    border-radius: 3px;
+    opacity: 0;
+    padding: 0 12px;
+    position: absolute;
+    right: -12px;
+    top: 36px;
+    transition: opacity 0.3s ease 0s, visibility 0s ease 0.3s;
+    visibility: hidden;
+    width: 84px;
+}
+
+.slidedownBox ul {
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 0 10px #e7e6e6;
+}
+
+.slidedownBox.anmpopup {
+    opacity: 1;
+    transition: opacity 0.3s ease 0s, visibility 0s ease 0s;
+    visibility: visible;
+}
+
+.slidedownBox ul {
+    backface-visibility: hidden;
+    transform: translateY(-20px);
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.slidedownBox.anmpopup ul {
+    transform: translateY(0px);
+}
+
+.slidedownBox ul li {
+    border-bottom: 1px solid #e4e4e4;
+    font-size: 14px;
+    height: 38px;
+    line-height: 38px;
+    margin: 0 12px;
+}
+
+.slidedownBox ul li:last-child {
+    border-bottom: medium none;
+}
+
+.slidedownBox ul li a {
+    color: #454545;
+}
+
+.slidedownBox ul li a:hover {
+    color: #f23e47;
+}
+
+.ctab-title {
+    background: #fff none repeat scroll 0 0;
+    height: 73px;
+}
+
+.ctab-title h3 {
+    color: #454545;
+    display: block;
+    float: left;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 73px;
+    margin-left: 2%;
+}
+
+.ctab-title a {
+    background: #f9f9f9 none repeat scroll 0 0;
+    border: 1px solid #d8d8d8;
+    color: #454545;
+    display: block;
+    float: right;
+    height: 32px;
+    line-height: 32px;
+    margin: 19px 18px 0 0;
+    width: 108px;
+}
+
+.ctab-title a i.ico-mng {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_other.png") no-repeat scroll 0 -58px;
+    display: block;
+    float: left;
+    height: 16px;
+    margin: 8px 7px 0 12px;
+    width: 18px;
+}
+
+.ctab-Main-title {
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid #d7d5e0;
+    width: 100%;
+}
+
+.ctab-Main-title ul {
+    margin: 0 0 0 2%;
+}
+
+.ctab-Main-title ul li {
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    border-top: 2px solid #fff;
+    float: left;
+    font-size: 16px;
+    height: 41px;
+    line-height: 41px;
+    margin: 0 1% 0 0;
+    padding: 0 1.5%;
+    text-align: center;
+}
+
+.ctab-Main-title ul li.cur, .ctab-Main-title ul li:hover {
+    background: #f6f5fa none repeat scroll 0 0;
+    border-left: 1px solid #d7d5e0;
+    border-right: 1px solid #d7d5e0;
+    border-top: 2px solid #00b38b;
+    color: #f23e47;
+    line-height: 39px;
+    position: relative;
+    top: 1px;
+}
+
+.ctab-Main-title ul li a {
+    display: block;
+}
+
+.ctab-Main-title ul li.cur a {
+    color: #ff6000;
+}
+
+.ctab-Mian-cont {
+    background: #f6f5fa none repeat scroll 0 0;
+    padding-bottom: 14px;
+}
+
+.Mian-cont-btn {
+    height: 49px;
+    padding: 17px 0 0;
+    position: relative;
+}
+
+.Mian-cont-btn .operateBtn {
+    height: 49px;
+    padding: 0 0 0 2%;
+}
+
+.Mian-cont-btn .operateBtn a {
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    float: left;
+    height: 31px;
+    line-height: 31px;
+}
+
+.Mian-cont-btn .operateBtn a.greenbtn {
+    background: #00b38b none no-repeat scroll 0 0;
+    text-indent: 36px;
+    width: 109px;
+}
+
+.Mian-cont-btn .operateBtn a.publish {
+    background-image: url("../images/ico_fabu_1.png");
+    background-position: 13px 9px;
+}
+
+.Mian-cont-btn .operateBtn a.add {
+    background-image: url("../images/ico_fabu_2.png");
+    background-position: 13px 8px;
+    position: relative;
+}
+
+.Mian-cont-btn .operateBtn a.greenbtn:hover {
+    background-color: #0ccea2;
+}
+
+.Mian-cont-btn .operateBtn a.modify {
+    background: #ff6000 none repeat scroll 0 0;
+    text-align: center;
+    width: 68px;
+}
+
+.Mian-cont-btn .operateBtn a.modify:hover {
+    background: #f09009 none repeat scroll 0 0;
+}
+
+.Mian-cont-btn .operateBtn a.modify:focus {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px rgba(54, 32, 0, 0.6);
+}
+
+.searchBar {
+    position: absolute;
+    right: 20px;
+    top: 17px;
+}
+
+.searchBar .srhTxt {
+    border: 1px solid #d8d8d8;
+    height: 20px;
+    padding: 6px 34px 6px 6px;
+    width: 207px;
+}
+
+.searchBar .srhBtn {
+    background: rgba(0, 0, 0, 0) url(../../style/images/ico_fabu_other.png) no-repeat scroll -1px -97px;
+    height: 19px;
+    position: absolute;
+    right: 8px;
+    top: 7px;
+    width: 20px;
+}
+
+.super-label {
+    font-size: 14px;
+    height: auto;
+    margin: 0 2% 19px;
+}
+
+.super-label a {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #eae8f0;
+    border-radius: 3px;
+    color: #454545;
+    display: block;
+    float: left;
+    height: 26px;
+    line-height: 26px;
+    margin-right: 1%;
+    padding: 0 1%;
+    position: relative;
+}
+
+.super-label a em {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_close.png") no-repeat scroll 0 0;
+    display: block;
+    height: 16px;
+    position: absolute;
+    right: -6px;
+    top: -5px;
+    width: 16px;
+}
+
+.Mian-cont-wrap {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #dbd9e1;
+    margin: 0 2%;
+}
+
+.defaultTab-T {
+    background: #fdfdfd none repeat scroll 0 0;
+    border-bottom: 1px solid #f1eff6;
+}
+
+.defaultTable {
+    margin: 0 auto;
+    width: 98%;
+}
+
+.defaultTable tr {
+    position: relative;
+}
+
+.defaultTable th {
+    background: #fdfdfd none repeat scroll 0 0;
+    color: #363636;
+    font-size: 16px;
+    font-weight: normal;
+    height: 48px;
+}
+
+.defaultTable2 {
+    margin: 5px auto;
+    width: 98%;
+}
+
+.defaultTable td {
+    border-bottom: 1px solid #f6f5fa;
+    color: #545454;
+    padding: 15px 0;
+}
+
+.defaultTable .t_1 {
+    padding-left: 1%;
+    position: relative;
+    text-align: left;
+    width: 10%;
+}
+
+.defaultTable .t_2 {
+    text-align: center;
+    width: 35%;
+}
+
+.defaultTable .t_3 {
+    text-align: center;
+    width: 15%;
+}
+
+.defaultTable .t_4 {
+    text-align: center;
+}
+
+.defaultTable .t_5 {
+    text-align: left;
+    width: 14%;
+}
+
+.defaultTable .t_6 {
+    padding-left: 1%;
+    position: relative;
+    text-align: left;
+    width: 25%;
+}
+
+.defaultTable .t_7 {
+    text-align: left;
+    width: 35%;
+}
+
+.defaultTable .t_8 {
+    text-align: left;
+    width: 20%;
+}
+
+.defaultTable .t_9 {
+    text-align: center;
+    width: 20%;
+}
+
+.defaultTable .t_2_1 {
+    text-align: left;
+    width: 30%;
+}
+
+.defaultTable tr:hover {
+    background: #fafafa none repeat scroll 0 0;
+}
+
+.defaultTable .btn a {
+    border-radius: 2px;
+    color: #fff;
+    display: inline-block;
+    height: 21px;
+    line-height: 21px;
+    margin: 0 2%;
+    padding: 0 9px;
+}
+
+.defaultTable .btn a.Top, .defaultTable .btn a.look {
+    border: 1px solid #00b38b;
+    color: #00b38b;
+    cursor: pointer;
+}
+
+.defaultTable .btn a.modify {
+    border: 1px solid #fe990b;
+    color: #fe990b;
+}
+
+.state {
+    padding: 2px 8px 2px 8px;
+    border: 1px solid green;
+    color: green;
+}
+
+.state:hover {
+    background: green none repeat scroll 0 0;
+    color: #fff;
+}
+
+.state_s {
+    padding: 2px 8px 2px 8px;
+    border: 1px solid #f23e47;
+    color: #f23e47;
+}
+
+.state_s:hover {
+    background: #f23e47 none repeat scroll 0 0;
+    color: #fff;
+}
+
+.defaultTable .btn a.delete {
+    border: 1px solid #f23e47;
+    color: #f23e47;
+}
+
+.defaultTable .btn a.Top:hover, .defaultTable .btn a.look:hover {
+    background: #00b38b none repeat scroll 0 0;
+    color: #fff;
+}
+
+.defaultTable .btn a.modify:hover {
+    background: #fe990b none repeat scroll 0 0;
+    color: #fff;
+}
+
+.defaultTable .btn a.delete:hover {
+    background: #f23e47 none repeat scroll 0 0;
+    color: #fff;
+}
+
+.defaultTable .btn a.Top.toping {
+    background: #00b38b none repeat scroll 0 0;
+    color: #fff;
+}
+
+.layuiBg {
+    background-color: #000;
+    display: none;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+.layuiBox {
+    animation: 0.3s ease 0s normal none 1 running bounceIn;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    display: none;
+    height: auto;
+    left: 50%;
+    position: absolute;
+    z-index: 100;
+}
+
+.layer-title {
+    background: #313541 none repeat scroll 0 0;
+    color: #fff;
+    height: 60px;
+    line-height: 60px;
+}
+
+.layer-title h2 {
+    display: block;
+    float: left;
+    font-size: 18px;
+    font-weight: normal;
+    margin-left: 15px;
+}
+
+.layer-title .layerClose {
+    background: rgba(0, 0, 0, 0) url("../images/ico_tanchu_close.png") no-repeat scroll 0 0;
+    cursor: pointer;
+    display: block;
+    float: right;
+    height: 18px;
+    margin: 21px 16px 0 0;
+    transition: all 0.3s ease-in-out 0s;
+    width: 19px;
+}
+
+.layer-title .layerClose:hover {
+    transform: rotate(180deg);
+}
+
+.imgXgbox {
+    width: 523px;
+}
+
+.XgfileImg {
+    background: #f0f0f0 none repeat scroll 0 0;
+    height: 115px;
+    margin: 14px auto 8px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 493px;
+}
+
+.onclktip {
+    color: #f23e47;
+    text-align: center;
+}
+
+.Xgimglink {
+    color: #626262;
+    font-size: 16px;
+    margin: 38px 16px;
+}
+
+.Xgimglink input[type="text"] {
+    border: 1px solid #cdcdcd;
+    height: 23px;
+    padding: 7px;
+    width: 390px;
+}
+
+.XgBtn {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.saveBtn {
+    background: #00b38b none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 16px;
+    height: 42px;
+    width: 117px;
+}
+
+.saveBtn:hover {
+    background: #0ccea2 none repeat scroll 0 0;
+}
+
+.fileImageSlect {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    height: 115px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 493px;
+}
+
+.Mian-cont-btn .operateBtn a.sp-photo.cur {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color: #868686;
+    text-indent: 0;
+    width: auto;
+}
+
+.upload_append_list {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #eae8f0;
+    border-radius: 3px;
+    color: #868686;
+    height: 29px;
+    line-height: 29px;
+    margin-right: 1%;
+    padding: 0 18px;
+    position: relative;
+}
+
+.upload_append_list span {
+    display: block;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+}
+
+.upload_append_list .upload_delete {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_close.png") no-repeat scroll 0 0;
+    display: block;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    right: -6px;
+    text-indent: -99999px;
+    top: -5px;
+    width: 16px;
+}
+
+.addFeileibox {
+    width: 376px;
+}
+
+.aFllink {
+    color: #626262;
+    font-size: 16px;
+    line-height: 39px;
+    margin: 15px 24px;
+}
+
+.aFllink h5 {
+    color: #3b3b3b;
+    display: inline;
+    font-weight: normal;
+}
+
+.aFllink input[type="text"] {
+    border: 1px solid #cdcdcd;
+    height: 23px;
+    padding: 7px;
+    width: 230px;
+}
+
+.aFlBtn {
+    margin: 30px 0 30px 106px;
+}
+
+.Columnbox {
+    padding-bottom: 10px;
+    width: 590px;
+}
+
+.Columnbox ul li {
+    display: block;
+    float: left;
+}
+
+.colunext {
+    display: none;
+}
+
+.colu-title {
+    background: #f8f8f8 none repeat scroll 0 0;
+    color: #454545;
+    font-size: 16px;
+    height: 51px;
+    line-height: 51px;
+    margin-bottom: 8px;
+}
+
+.Columnbox li.li-1 {
+    margin-left: 19px;
+    width: 180px;
+}
+
+.Columnbox li.li-2 {
+    width: 154px;
+}
+
+.Columnbox li.li-3 {
+    text-align: center;
+    width: 60px;
+}
+
+.Columnbox li.li-4 {
+    margin-left: 93px;
+    width: 80px;
+}
+
+.colu-cont i {
+    background: rgba(0, 0, 0, 0) url("../images/ico_tabchu_list.png") no-repeat scroll 0 -34px;
+    display: block;
+    float: left;
+    height: 14px;
+    margin: 12px 8px 0 0;
+    width: 14px;
+}
+
+.colu-cont.active i {
+    background-position: 0 0;
+}
+
+.colu-cont li {
+    color: #626262;
+    height: 36px;
+    line-height: 36px;
+}
+
+.colu-cont li.li-1 {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.colu-cont-no i {
+    background: rgba(0, 0, 0, 0) url("../images/ico_tabchu_list.png") no-repeat scroll 0 0;
+    display: block;
+    float: left;
+    height: 14px;
+    margin: 12px 8px 0 0;
+    width: 14px;
+}
+
+.colu-cont-no li {
+    color: #626262;
+    height: 36px;
+    line-height: 36px;
+}
+
+.colu-cont-no li.li-1 {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.colunext li {
+    height: 38px;
+    line-height: 38px;
+}
+
+.colunext li i {
+    background: rgba(0, 0, 0, 0) url("../images/ico_tabchu_list.png") no-repeat scroll -5px -72px;
+    display: block;
+    float: left;
+    height: 7px;
+    margin: 18px 5px 0 0;
+    width: 4px;
+}
+
+.colunext li.li-1 {
+    color: #626262;
+    margin-left: 43px;
+    width: 158px;
+}
+
+a.colu-xg {
+    background: #d1d1d1 none repeat scroll 0 0;
+    border-radius: 10px;
+    color: #fff;
+    display: block;
+    height: 21px;
+    line-height: 21px;
+    margin: 8px auto 0;
+    width: 53px;
+}
+
+a.colu-xg:hover {
+    background: #fe990b none repeat scroll 0 0;
+}
+
+.colu-next.on {
+    background: #f4f5f5 none repeat scroll 0 0;
+}
+
+.publishArt {
+    background: #f6f5fa none repeat scroll 0 0;
+}
+
+.publishArt h4 {
+    color: #454545;
+    display: block;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0 2%;
+    padding: 20px 0 0;
+}
+
+.pubMain {
+    margin: 0 2%;
+}
+
+.pubMain h5 {
+    color: #454545;
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 20px 0 10px;
+}
+
+.pubtitle {
+    color: #454545;
+    font-size: 16px;
+    padding-top: 25px;
+}
+
+.pub-txt-bar .shuruTxt {
+    border: 1px solid #d8d8d8;
+    height: 17px;
+    padding: 10px;
+    width: 60%;
+}
+
+.pub-addflbtn {
+    margin-top: 20px;
+}
+
+.pub-addflbtn a.greenbtn {
+    background: #00b38b none no-repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    height: 31px;
+    line-height: 31px;
+    text-indent: 36px;
+    width: 109px;
+}
+
+.pub-addflbtn a.add {
+    background-image: url("../images/ico_fabu_2.png");
+    background-position: 13px 8px;
+}
+
+.pub-addflbtn a.greenbtn:hover {
+    background-color: #00b38b;
+}
+
+.Thumblist {
+    display: inline;
+}
+
+.Thumb_li {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #d8d8d8;
+    float: left;
+    height: 150px;
+    margin-bottom: 15px;
+    margin-right: 3%;
+    overflow: hidden;
+    padding: 2px;
+    position: relative;
+    width: 217px;
+}
+
+.Thumb_li img {
+    text-align: center;
+    width: 100%;
+}
+
+.Thumb_li .bg {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.Thumb_li .bg a {
+    background: #f23e47 none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    height: 31px;
+    left: 50%;
+    line-height: 31px;
+    margin-left: -54px;
+    margin-top: -15px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 109px;
+}
+
+.Thumb_li .bg a:hover {
+    opacity: 0.9;
+}
+
+.Thumblistbg {
+    background: #fff url("../images/img-hui.jpg") no-repeat scroll 2px 2px;
+    border: 1px solid #d8d8d8;
+    display: inline-block;
+    height: 150px;
+    overflow: hidden;
+    padding: 2px;
+    position: relative;
+    width: 217px;
+}
+
+.Thumblistbg #fileImage {
+    background: #313541 none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    height: 31px;
+    left: 50%;
+    line-height: 31px;
+    margin-left: -54px;
+    margin-top: -15px;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    width: 109px;
+    z-index: 9;
+}
+
+.Thumblistbg .Thumbbtn {
+    background: #313541 none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    height: 31px;
+    left: 50%;
+    line-height: 31px;
+    margin-left: -54px;
+    margin-top: -15px;
+    position: absolute;
+    top: 50%;
+    width: 109px;
+    z-index: 3;
+}
+
+.Thumblistbg .Thumbbtn i {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_other.png") no-repeat scroll 0 -131px;
+    display: block;
+    float: left;
+    height: 14px;
+    margin: 9px 6px 0 14px;
+    width: 16px;
+}
+
+.pub-area-bar textarea {
+    border: 1px solid #d8d8d8;
+    height: 80px;
+    padding: 5px 10px;
+    width: 60%;
+}
+
+.pub-article-cont {
+    width: 98%;
+}
+
+.pub-btn {
+    padding: 55px 0 86px;
+}
+
+.addSortBox {
+    width: 490px;
+}
+
+.addSortMain {
+    padding: 30px 0 0;
+}
+
+.addSortMain span {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #d9d9d9;
+    border-radius: 15px;
+    color: #666666;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 1px 25px 16px;
+    padding: 0 22px;
+}
+
+.addSortMain span.on, .addSortMain span:hover {
+    background: #00b38b none repeat scroll 0 0;
+    border: 1px solid #11af10;
+    color: #fff;
+}
+
+.addSortBtn {
+    padding: 0 0 29px;
+    text-align: center;
+}
+
+.backlistBtn {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #d8d8d8;
+    border-radius: 2px;
+    height: 31px;
+    line-height: 31px;
+    position: absolute;
+    right: 19px;
+    top: 21px;
+    width: 109px;
+}
+
+.backlistBtn i.ico-back {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_other.png") no-repeat scroll 0 -154px;
+    display: block;
+    float: left;
+    height: 15px;
+    margin: 8px 6px 0 15px;
+    width: 15px;
+}
+
+.hdColumnbox li.li-1 {
+    width: 140px;
+}
+
+.hdColumnbox li.li-2 {
+    width: 126px;
+}
+
+.hdColumnbox li.li-3 {
+    width: 53px;
+}
+
+.hdColumnbox li.li-4 {
+    margin-left: 50px;
+    width: 72px;
+}
+
+.hdColumnbox li.li-5 {
+    width: 120px;
+}
+
+.hdColumnbox .colunext li.li-1 {
+    width: 117px;
+}
+
+.hdColumnbox {
+    padding-bottom: 24px;
+}
+
+.hd-start-end ul li {
+    float: left;
+    width: 20%;
+}
+
+.hd-start-end ul li .pub-txt-bar .shuruTxt {
+    text-align: center;
+    width: 80%;
+}
+
+a.team-a, a.sonwb-a {
+    text-decoration: underline;
+}
+
+.defaultTable tr.wd td.t_1::after, .defaultTable tr.wd td.t_6::after {
+    background: #ff6000 none repeat scroll 0 0;
+    border-radius: 100%;
+    content: "";
+    height: 8px;
+    left: 0;
+    position: absolute;
+    top: 21px;
+    width: 8px;
+}
+
+.wd-msg {
+    color: #424242;
+    font-size: 16px;
+    height: 34px;
+    line-height: 34px;
+}
+
+.wd-msg span {
+    background: #ff6000 none repeat scroll 0 0;
+    border-radius: 100%;
+    color: #fff;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    width: 20px;
+}
+
+.alcenter {
+    text-align: center;
+}
+
+a.export-a {
+    background: #00b38b none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    display: inline-block;
+    height: 21px;
+    line-height: 21px;
+    padding: 0 9px;
+}
+
+a.export-a:hover {
+    opacity: 0.9;
+}
+
+.wd-msg h4 {
+    color: #303030;
+    display: inline;
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.wd-msg h5 {
+    color: #9b9b9b;
+    display: inline;
+    font-size: 20px;
+    font-weight: normal;
+    margin-left: 3%;
+}
+
+.wd-msg h5 b {
+    color: #f23e47;
+    font-weight: normal;
+}
+
+.defaultTable .td_1 {
+    padding-left: 1%;
+    text-align: left;
+    width: 10%;
+}
+
+.defaultTable .td_2 {
+    text-align: center;
+    width: 20%;
+}
+
+.defaultTable .td_3 {
+    text-align: left;
+    width: 30%;
+}
+
+.defaultTable .td_4 {
+    text-align: left;
+    width: 30%;
+}
+
+.defaultTable .td_5 {
+    text-align: left;
+    width: 10%;
+}
+
+.hd-btn-Bar a.hdexportBtn {
+    background: #f9f9f9 none repeat scroll 0 0;
+    border-radius: 0;
+    right: 142px;
+}
+
+.hd-btn-Bar a.hdexportBtn i.ico-export {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_other.png") no-repeat scroll 0 -183px;
+    display: block;
+    float: left;
+    height: 16px;
+    margin: 8px 7px 0 11px;
+    width: 19px;
+}
+
+.tbkaig {
+    color: #424242;
+    float: right;
+    font-size: 16px;
+    height: 21px;
+    line-height: 21px;
+    margin: 17px 25px 0;
+}
+
+.tbkaig span {
+    margin-right: 15px;
+}
+
+.tbkaig .chk_4 + label {
+    font-size: 14px;
+    position: relative;
+    top: 4px;
+}
+
+.xc-btn-bar {
+    border-top: 1px solid #d6d4df;
+}
+
+.xc-btn-bar a.greenbtn {
+    background: #00b38b none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    height: 31px;
+    line-height: 31px;
+    margin: 23px 0 29px 2%;
+    width: 109px;
+}
+
+.xc-btn-bar a.greenbtn:hover {
+    background-color: #00b38b;
+}
+
+.xc-btn-bar a.greenbtn i.ico-add {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_2.png") no-repeat scroll 0 0;
+    display: block;
+    float: left;
+    height: 15px;
+    margin: 8px 6px 0 14px;
+    width: 17px;
+}
+
+.xc-all-box {
+    padding-bottom: 50px;
+}
+
+.xc-list {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #e4e3e6;
+    float: left;
+    height: 350px;
+    margin: 10px 0 10px 2%;
+    position: relative;
+    width: 308px;
+}
+
+.xc-list .img {
+    background: rgba(0, 0, 0, 0) url("../images/img_xc_bg.jpg") no-repeat scroll 0 0;
+    height: 186px;
+    margin: 11px auto;
+    overflow: hidden;
+    position: relative;
+    width: 93%;
+}
+
+.xc-list .img img {
+    width: 100%;
+}
+
+.xc-list .img:hover img {
+}
+
+.xc-list .img em {
+    background: #000 none repeat scroll 0 0;
+    border-radius: 10px;
+    color: #fff;
+    display: block;
+    height: 22px;
+    line-height: 22px;
+    opacity: 0.5;
+    padding: 0 11px;
+    position: absolute;
+    right: 9px;
+    top: 7px;
+}
+
+.xc-list .info {
+    line-height: 21px;
+    margin: 0 auto;
+    position: relative;
+    width: 93%;
+}
+
+.xc-list .info h3 {
+    color: #1f1f1f;
+    display: block;
+    float: left;
+    font-size: 16px;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 168px;
+}
+
+.xc-list .info h3 a {
+    color: #1f1f1f;
+}
+
+.xc-list .info h3 a:hover {
+    color: #f23e47;
+}
+
+.xc-list .info span {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.xc-list .info em.top {
+    color: #454545;
+    position: absolute;
+    right: 61px;
+    top: 0;
+}
+
+.xc-list .btn {
+    margin: 50px auto 0;
+    width: 93%;
+}
+
+.xc-list .btn a {
+    border-radius: 2px;
+    display: block;
+    font-size: 16px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    width: 117px;
+}
+
+.xc-list .btn a.xc-xiugai-a {
+    background: #ff6000 none repeat scroll 0 0;
+    color: #fff;
+    float: left;
+}
+
+.xc-list .btn a.xc-xiugai-a:hover {
+    background: #fe990b none repeat scroll 0 0;
+}
+
+.xc-list .btn a.xc-delete-a {
+    background: #ebebeb none repeat scroll 0 0;
+    color: #7c7c7c;
+    float: right;
+}
+
+.xc-list .btn a.xc-delete-a:hover {
+    background: #ff6000 none repeat scroll 0 0;
+    color: #fff;
+}
+
+.addXcBox .aFllink input[type="text"] {
+    width: 96%;
+}
+
+.addXcBox .aFlBtn {
+    margin-left: 22px;
+}
+
+.xcXgBox {
+    width: 433px;
+}
+
+.ctab-title .xc-backlist a {
+    background: #fff none repeat scroll 0 0;
+    margin: 0;
+}
+
+.xc-btn-bar {
+    position: relative;
+}
+
+.xc-btn-bar h3 {
+    color: #303030;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0 2%;
+    padding: 30px 0;
+    position: relative;
+}
+
+.downloadfile {
+    cursor: pointer;
+    height: 31px;
+    opacity: 0;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 109px;
+    z-index: 3;
+}
+
+.downloadImgBtn {
+    background: #313541 none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    height: 31px;
+    line-height: 31px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 109px;
+    z-index: 2;
+}
+
+.downloadImgBtn i.ico-download {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_other.png") no-repeat scroll 0 -131px;
+    display: block;
+    float: left;
+    height: 14px;
+    margin: 9px 6px 0 14px;
+    width: 16px;
+}
+
+.subxc-list {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #e4e3e6;
+    float: left;
+    height: 325px;
+    margin: 0 0 20px 2%;
+    position: relative;
+    text-align: center;
+    width: 308px;
+}
+
+.setfm::after {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fengmian.png") no-repeat scroll 0 0;
+    content: "";
+    height: 80px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80px;
+}
+
+.subxc-list .img {
+    height: 186px;
+    margin: 10px auto 0;
+    overflow: hidden;
+    position: relative;
+    width: 93%;
+}
+
+.subxc-list .img img {
+    width: 100%;
+}
+
+.subxc-list .img .bg {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.subxc-list .img .bg a {
+    background: #f23e47 none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    height: 40px;
+    left: 87px;
+    line-height: 40px;
+    position: absolute;
+    text-align: center;
+    top: 73px;
+    width: 114px;
+}
+
+.subxc-list p {
+    background: #fff none repeat scroll 0 0;
+    color: #1f1f1f;
+    font-size: 16px;
+    height: 57px;
+    line-height: 57px;
+    position: relative;
+    z-index: 10;
+}
+
+.subxc-list .xc-opr {
+    height: 70px;
+    margin: 0 auto;
+    width: 93%;
+}
+
+.subxc-list .xc-opr a {
+    border-radius: 2px;
+    display: block;
+    font-size: 16px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    width: 117px;
+}
+
+.subxc-list .xc-opr a.xc-fm-a {
+    background: #00b38b none repeat scroll 0 0;
+    color: #fff;
+    float: left;
+    margin: 10px 0 0 11px;
+}
+
+.subxc-list .xc-opr a.xc-fm-a:hover {
+    background: #0ccea2 none repeat scroll 0 0;
+    color: #fff;
+}
+
+.subxc-list .xc-opr a.xc-xiugai-a {
+    background: #fe990b none repeat scroll 0 0;
+    color: #fff;
+    float: right;
+    margin: 10px 11px 0 0;
+}
+
+.subxc-list .xc-opr a.xc-xiugai-a:hover {
+    background: #db8104 none repeat scroll 0 0;
+}
+
+.tp-title {
+    height: 73px;
+}
+
+.tp-title h3 {
+    color: #454545;
+    float: left;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 73px;
+    margin-left: 2%;
+}
+
+.tp-mng-box {
+    float: right;
+    margin: 20px 18px 0 0;
+    width: 292px;
+}
+
+.tp-mng-box a.tp-zdy-a {
+    background: #f9f9f9 none repeat scroll 0 0;
+    border: 1px solid #d8d8d8;
+    color: #454545;
+    display: block;
+    float: left;
+    height: 32px;
+    line-height: 32px;
+    margin-right: 34px;
+    width: 143px;
+}
+
+.tp-mng-box a.tp-zdy-a i.ico-zdy {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_other.png") no-repeat scroll 0 -212px;
+    display: block;
+    float: left;
+    height: 16px;
+    margin: 8px 11px 0 9px;
+    width: 14px;
+}
+
+.tp-zhongduan {
+    background: #f9f9f9 none repeat scroll 0 0;
+    border: 1px solid #d8d8d8;
+    float: left;
+    height: 32px;
+    position: relative;
+    width: 110px;
+}
+
+.tp-zhongduan span {
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+    text-indent: 17px;
+    width: 100%;
+}
+
+.tp-zhongduan span i.ico-tri {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_other.png") no-repeat scroll -2px 0;
+    display: block;
+    height: 5px;
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    width: 9px;
+}
+
+.tp-zhongduan span a {
+    display: block;
+    height: 32px;
+    width: 100%;
+}
+
+.tp-zhongduan .hide-zd {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #d8d8d8;
+    display: none;
+    height: 32px;
+    left: -1px;
+    line-height: 32px;
+    position: absolute;
+    text-indent: 17px;
+    top: 32px;
+    width: 110px;
+}
+
+.tp-zhongduan .hide-zd a {
+    display: block;
+    height: 32px;
+    width: 100%;
+}
+
+.tp-zhongduan a.hide-zd:hover {
+    background: #f9f9f9 none repeat scroll 0 0;
+}
+
+.tp-cnt-btn {
+    padding: 20px 0;
+}
+
+.tp-xl-box {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #d8d8d8;
+    float: left;
+    height: 31px;
+    line-height: 32px;
+    margin-left: 2%;
+    position: relative;
+    width: 110px;
+}
+
+.tp-xl-box span {
+    cursor: pointer;
+    display: block;
+    height: 31px;
+    text-indent: 17px;
+    width: 110px;
+}
+
+.tp-xl-box span i.ico-tri {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_other.png") no-repeat scroll -2px 0;
+    display: block;
+    height: 5px;
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    width: 9px;
+}
+
+.tp-cnt-btn .operateBtn {
+    float: left;
+}
+
+.tp-xl-box .hide-menu {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #d8d8d8;
+    display: none;
+    left: -1px;
+    padding: 6px 0;
+    position: absolute;
+    top: 31px;
+    width: 100%;
+    z-index: 8;
+}
+
+.tp-xl-box .hide-menu li {
+    height: 26px;
+    line-height: 26px;
+    margin: 1px;
+    text-indent: 15px;
+}
+
+.tp-xl-box .hide-menu li a {
+    display: block;
+    height: 26px;
+    width: 100%;
+}
+
+.tp-xl-box .hide-menu li a:hover, .tp-xl-box .hide-menu li.on {
+    background: #f5f5f5 none repeat scroll 0 0;
+    color: #464646;
+}
+
+.tp-list {
+    height: auto;
+}
+
+.tp-list .input {
+    margin: 0 auto;
+    width: 93%;
+}
+
+.tp-list .input input {
+    background: #fcfcfc none repeat scroll 0 0;
+    border: 1px solid #dadada;
+    height: 25px;
+    margin: 15px auto;
+    padding: 5px 2%;
+    width: 96%;
+}
+
+.tp-list .input h4 {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.tp-list .btn {
+    margin-top: 0;
+    padding: 12px 0;
+}
+
+.tp-list .btn a.xc-bc-a {
+    background: #00b38b none repeat scroll 0 0;
+    color: #fff;
+    float: left;
+}
+
+.tp-list .btn a.xc-bc-a:hover {
+    background: #0ccea2 none repeat scroll 0 0;
+    color: #fff;
+}
+
+.aFllink .kg, .aFllink .kg ul {
+    display: inline;
+}
+
+.aFllink .kg ul li {
+    display: inline-block;
+}
+
+.aFllink .kg ul li .chk_4 + label {
+    top: 5px;
+}
+
+.operateBtn .fileImgtp {
+    cursor: pointer;
+    height: 31px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 109px;
+}
+
+.tp-tit-ms, .tp-tit-ms span {
+    width: 162px;
+}
+
+.tp-tit-ms .hide-menu li, .tp-tit-ms .hide-menu li a {
+    height: auto;
+    line-height: 1;
+    text-indent: 0;
+}
+
+.tp-tit-ms .hide-menu li a {
+    padding: 8px 0;
+}
+
+.tp-tit-ms .hide-menu li {
+    margin-bottom: 2px;
+}
+
+.tp-tit-ms li em {
+    display: block;
+    float: left;
+    margin-left: 15px;
+    margin-right: 10px;
+}
+
+.tp-tit-ms li b {
+    display: inline-block;
+    height: auto;
+    width: 84px;
+}
+
+.tp-tit-ms .hide-menu li.msli-1 em {
+    line-height: 32px;
+}
+
+.tp-tit-ms .hide-menu li.msli-2 em {
+    line-height: 32px;
+}
+
+.tp-tit-ms .hide-menu li.msli-3 em {
+    line-height: 53px;
+}
+
+.tp-tit-ms .hide-menu li.msli-4 em {
+    line-height: 32px;
+}
+
+.tp-tit-ms .hide-menu li.msli-5 em {
+    line-height: 32px;
+}
+
+.tp-tit-ms .hide-menu li.msli-6 em {
+    line-height: 37px;
+}
+
+.tp-tit-ms .hide-menu li.msli-7 em {
+    line-height: 101px;
+}
+
+.Mian-cont-btn2 {
+    border-top: 1px solid #d6d4df;
+}
+
+i.ico-export {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_other.png") no-repeat scroll 0 -183px;
+    display: block;
+    float: left;
+    height: 16px;
+    margin: 8px 7px 0 11px;
+    width: 19px;
+}
+
+.zxtop-title {
+    border-bottom: 1px solid #d6d4df;
+}
+
+.zxtop-title a.backlistBtn {
+    background: #fff none repeat scroll 0 0;
+    top: 0;
+}
+
+.zx-dtlMain {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #dbd9e1;
+    color: #545454;
+    font-size: 16px;
+    line-height: 40px;
+    margin: 39px auto;
+    width: 96%;
+}
+
+.zx-dtlMain dl {
+    margin: 10px 2%;
+}
+
+.zx-dtlMain dl dt {
+    display: inline-block;
+    text-align: right;
+    width: 118px;
+}
+
+.zx-dtlMain dl dd {
+    display: inline-block;
+}
+
+.mb-Main-box {
+    padding: 30px 0;
+}
+
+.mblist {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #e3e2e5;
+    float: left;
+    height: 500px;
+    margin: 20px 0 0 2%;
+    text-align: center;
+    width: 308px;
+}
+
+.mblist .img {
+    height: 360px;
+    margin: 11px auto 0;
+    width: 287px;
+}
+
+.mblist h4 {
+    color: #1f1f1f;
+    font-size: 16px;
+    font-weight: normal;
+    height: 70px;
+    line-height: 70px;
+}
+
+.mblist .btn a {
+    border-radius: 2px;
+    display: block;
+    height: 42px;
+    line-height: 42px;
+    width: 117px;
+}
+
+.mblist .btn a.usingBtn {
+    background: #ebebeb none repeat scroll 0 0;
+    color: #7c7c7c;
+    margin: 0 auto;
+}
+
+.mblist .btn a.previewBtn {
+    background: #00b38b none repeat scroll 0 0;
+    color: #fff;
+    float: left;
+    margin: 0 0 0 13px;
+}
+
+.mblist .btn a.buyBtn {
+    background: #ff6000 none repeat scroll 0 0;
+    color: #fff;
+    float: left;
+    margin: 0 0 0 50px;
+}
+
+.mblist .btn a:hover {
+    opacity: 0.9;
+}
+
+.mb-upload-img {
+    padding: 40px 0 10px;
+}
+
+.mb-uplod {
+    float: left;
+    margin-right: 2%;
+}
+
+.mb-uplod b {
+    color: #313541;
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 40px;
+    text-align: center;
+}
+
+.upload-Box {
+    background: #fff url("../images/img_xt.jpg") no-repeat scroll 1px 1px;
+    border: 1px solid #d8d8d8;
+    height: 156px;
+    overflow: hidden;
+    padding: 1px;
+    position: relative;
+    width: 176px;
+}
+
+.upload-Box span.uplBtn {
+    background: #313541 none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    height: 31px;
+    left: 50%;
+    line-height: 31px;
+    margin-left: -54px;
+    margin-top: -15px;
+    position: absolute;
+    top: 50%;
+    width: 109px;
+    z-index: 3;
+}
+
+.upload-Box span.uplBtn i {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_other.png") no-repeat scroll 0 -131px;
+    display: block;
+    float: left;
+    height: 14px;
+    margin: 9px 6px 0 14px;
+    width: 16px;
+}
+
+.upload-Box .fileImageSlect {
+    cursor: pointer;
+    height: 31px;
+    width: 109px;
+}
+
+.upload-Box .imgbox {
+    height: 156px;
+    overflow: hidden;
+    width: 176px;
+}
+
+.upload-Box .imgbox img {
+    width: 100%;
+}
+
+.uploading span.uplBtn {
+    display: none;
+}
+
+.upload-Box .imgbox .bg {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.uploading .imgbox .bg {
+    display: block;
+}
+
+.upload-Box .imgbox .bg a {
+    background: #ff6000 none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    height: 31px;
+    left: 50%;
+    line-height: 31px;
+    margin-left: -54px;
+    margin-top: -15px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 109px;
+}
+
+.upload-Box .imgbox .bg a:hover {
+    opacity: 0.9;
+}
+
+.mb-baidu-bar {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #d8d8d8;
+    height: 334px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    width: 60%;
+}
+
+.mb-baidu-bar span.tip {
+    color: #ababab;
+    display: block;
+    font-size: 16px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+}
+
+.lxfs-tzyx ul {
+    width: 64%;
+}
+
+.lxfs-tzyx ul li {
+    float: left;
+    width: 50%;
+}
+
+.lxfs-tzyx ul li .shuruTxt {
+    border: 1px solid #d8d8d8;
+    height: 17px;
+    padding: 10px;
+    width: 87%;
+}
+
+.mb-color ul li {
+    color: #454545;
+    float: left;
+    margin-right: 2%;
+    text-align: center;
+    width: 50px;
+}
+
+.mb-color ul li span {
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    height: 38px;
+    position: relative;
+    width: 50px;
+}
+
+.mb-color ul li span.red {
+    background: #f23e47 none repeat scroll 0 0;
+}
+
+.mb-color ul li span.blue {
+    background: #3197ee none repeat scroll 0 0;
+}
+
+.mb-color ul li.active span {
+    background-image: url("../images/ico_mb_xz.png");
+    background-position: 15px 10px;
+    background-repeat: no-repeat;
+}
+
+.mb-color ul li em {
+    display: block;
+    line-height: 50px;
+}
+
+.pub-txt-bar .shuruTxt2 {
+    width: 332px;
+}
+
+.pubtitle span {
+    color: #969696;
+}
+
+.pub-txt-bar b.error {
+    background: rgba(0, 0, 0, 0) url("../images/ico_wrong.png") no-repeat scroll 0 0;
+    display: inline-block;
+    height: 17px;
+    margin: 0 0 0 10px;
+    position: relative;
+    top: 3px;
+    width: 19px;
+}
+
+.pub-txt-bar .errorBox {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ffa5aa;
+    border-radius: 4px;
+    color: #e8000c;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    margin-left: 23px;
+    position: relative;
+    text-indent: 11px;
+    width: 334px;
+}
+
+.pub-txt-bar .errorBox::after {
+    background: rgba(0, 0, 0, 0) url("../images/ico_wrong_tip.png") no-repeat scroll 0 0;
+    content: "";
+    height: 12px;
+    left: -6px;
+    position: absolute;
+    top: 8px;
+    width: 6px;
+}
+
+.resetBtn {
+    background: #ababab none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #f6f5fa;
+    font-size: 16px;
+    height: 42px;
+    margin-left: 2%;
+    width: 117px;
+}
+
+.resetBtn:hover {
+    background: #9e9d9d none repeat scroll 0 0;
+    color: #fff;
+}
+
+.superCtab-cg {
+    margin-left: 205px;
+}
+
+.cg-title {
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid #d6d4df;
+    height: 66px;
+}
+
+.cg-title a.default-add-btn {
+    margin: 19px 0 0 2%;
+}
+
+.cg-title h2 {
+    color: #444444;
+    float: left;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 66px;
+    margin-left: 2%;
+}
+
+.cg-title .searchBar {
+    top: 17px;
+}
+
+a.default-add-btn {
+    background: #00b38b none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    float: left;
+    height: 31px;
+    line-height: 31px;
+    width: 109px;
+}
+
+a.default-add-btn:hover {
+    background-color: #00b38b;
+}
+
+a.default-add-btn i.ico-add {
+    background: rgba(0, 0, 0, 0) url("../images/ico_fabu_2.png") no-repeat scroll 0 0;
+    display: block;
+    float: left;
+    height: 15px;
+    margin: 8px 6px 0 14px;
+    width: 17px;
+}
+
+.cgsuperCtab {
+    background: #f6f5fa none repeat scroll 0 0;
+    padding: 24px 0;
+}
+
+.defaultTable .td_6 {
+    padding-left: 1%;
+    text-align: left;
+    width: 10%;
+}
+
+.defaultTable .td_7 {
+    text-align: left;
+    width: 20%;
+}
+
+.defaultTable .td_8 {
+    text-align: center;
+    width: 30%;
+}
+
+.defaultTable .td_9 {
+    text-align: center;
+    width: 30%;
+}
+
+.defaultTable .td_10 {
+    text-align: center;
+    width: 10%;
+}
+
+.defaultTable a.txdoc {
+    text-decoration: underline;
+}
+
+
+
+
+.cgsuperCtab .defaultTable .btn a.modify {
+    background: #ff980b none repeat scroll 0 0;
+    color: #fff;
+}
+
+.cgsuperCtab .defaultTable .btn a.modify:hover {
+    background: #f59001 none repeat scroll 0 0;
+}
+
+.newPindaoBox {
+    width: 544px;
+}
+
+.newPindaoBox .layer-content {
+    padding: 18px;
+}
+
+.PD-list {
+    color: #626262;
+    font-size: 16px;
+    line-height: 37px;
+    margin-bottom: 8px;
+}
+
+.PD-list dt {
+    display: block;
+    float: left;
+    text-align: right;
+    width: 132px;
+}
+
+.PD-list dd {
+    float: left;
+    width: 375px;
+}
+
+.PD-list dd .txt {
+    border: 1px solid #cdcdcd;
+    display: block;
+    height: 27px;
+    padding: 5px;
+    width: 92%;
+}
+
+.PD-list dd .errortip {
+    color: #e8000c;
+    height: 49px;
+    line-height: 49px;
+}
+
+.PD-list dd .errortip i.ico-error {
+    background: rgba(0, 0, 0, 0) url("../images/ico_wrong.png") no-repeat scroll 0 0;
+    display: block;
+    float: left;
+    height: 17px;
+    margin: 15px 9px 0 0;
+    width: 18px;
+}
+
+.PD-list .saveBtn {
+    margin-bottom: 20px;
+    margin-left: 132px;
+}
+
+.newPindaoBox-xg .PD-list dt {
+    width: 168px;
+}
+
+.newPindaoBox-xg .PD-list dd {
+    width: 333px;
+}
+
+.newPindaoBox-xg .PD-list .saveBtn {
+    margin-left: 168px;
+}
+
+.defaultTable .btn a.changeteam {
+    background: #00b38b none repeat scroll 0 0;
+}
+
+.defaultTable .btn a.sp-close {
+    background: #a3a3a3 none repeat scroll 0 0;
+}
+
+.defaultTable .btn a.closed {
+    background: #e2e2e2 none repeat scroll 0 0;
+    color: #a5a5a5;
+}
+
+.defaultTable .td_7_1 {
+    width: 70%;
+}
+
+.defaultTable .td_10_1 {
+    text-align: left;
+    width: 20%;
+}
+
+.defaultTable th.td_10_1 {
+    text-indent: 98px;
+}
+
+.xzGenghuan {
+    color: #626262;
+    font-size: 16px;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.xzGenghuan strong {
+    color: #f23e47;
+    font-weight: normal;
+}
+
+.xzGenghuan-btn {
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.xzGenghuan-btn input {
+    margin: 0 15px;
+}
+
+.cancelBtn {
+    background: #939393 none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 16px;
+    height: 42px;
+    width: 117px;
+}
+
+.cancelBtn:hover {
+    background: #808080 none repeat scroll 0 0;
+}
+
+span.label {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #00b38b;
+    border-radius: 9px;
+    color: #00b38b;
+    display: inline-block;
+    height: 20px;
+    padding: 0 8px;
+}
+
+.defaultTable .btn a.delete-a {
+    background: #f23e47 none repeat scroll 0 0;
+    margin: 0 10px;
+}
+
+.defaultTable .btn a.delete-a:hover {
+    background: #ea2730 none repeat scroll 0 0;
+}
+
+.newLabelBox {
+    padding-bottom: 30px;
+    width: 458px;
+}
+
+.PDlabel-list {
+    padding: 20px 20px 0;
+}
+
+.PDlabel-list dt {
+    color: #626262;
+    display: block;
+    font-size: 16px;
+    line-height: 45px;
+}
+
+.PDlabel-list dd input.txt {
+    border: 1px solid #cdcdcd;
+    height: 27px;
+    padding: 5px 2%;
+    width: 96%;
+}
+
+.pageSelect {
+    height: 54px;
+    margin: 0 2%;
+    position: relative;
+}
