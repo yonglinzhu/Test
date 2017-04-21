@@ -24,13 +24,16 @@
 <link rel="stylesheet" href="style/mainCss/admin_page.css" />
 <link rel="stylesheet" href="style/pagingSrc/kkpager_blue.css" />
 <link rel="stylesheet" href="style/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="style/dist/css/bootstrapValidator.css"/>
 <link rel="stylesheet"
 	href="style/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
 <script type="text/javascript" src="style/mainJs/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="style/dist/js/bootstrapValidator.js"></script>
 <script type="text/javascript" src="style/bootstrap/js/bootstrap.min.js"></script>
 <script
 	src="style/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 <script src="style/pagingSrc/kkpager.min.js" type="text/javascript"></script>
+<script src="style/mainJs/validate.js" type="text/javascript"></script>
 <style type="text/css">
 .btn-addStudent {
 	margin-left: 29px;
