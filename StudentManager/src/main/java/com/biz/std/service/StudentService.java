@@ -1,5 +1,11 @@
 package com.biz.std.service;
 
+import com.biz.std.model.Grade;
+import com.biz.std.model.Score;
+import com.biz.std.model.Student;
+import com.biz.std.model.Subject;
+import com.biz.std.vo.PageResult;
+import com.biz.std.vo.PageVo;
 import com.biz.std.vo.ScoreVo;
 import com.biz.std.vo.StudentVo;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +19,9 @@ import java.util.List;
  * by zale on 2017/5/8.
  */
 public interface StudentService {
-    List<StudentVo> goStudentManager(String pageNum);// 跳转至班级信息管理页
+    PageResult<Student> goStudentManager(PageVo pageVo);// 跳转至班级信息管理页
+
+    List<Grade> findGradeList();
 
     void saveStudent(StudentVo studentVo);// 保存学生信息
 
@@ -21,11 +29,11 @@ public interface StudentService {
 
     void deleteStudent(StudentVo studentVo);// 删除学生信息
 
-    void goAddSubject(StudentVo studentVo);// 跳转至选课页面
+    List<Subject> goAddSubject(StudentVo studentVo);// 跳转至选课页面
 
     void addSubject(ScoreVo scoreVo);// 选修该课程
 
-    void goEntryScore(StudentVo studentVo);// 跳转至分数录入页
+    List<Score> goEntryScore(StudentVo studentVo);// 跳转至分数录入页
 
     void entryScore(ScoreVo scoreVo);// 分数录入
 

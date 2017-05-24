@@ -1,14 +1,15 @@
 package com.biz.std.service.impl;
 
-import com.biz.std.model.BaseStudentNum;
-import com.biz.std.model.Grade;
-import com.biz.std.model.Score;
-import com.biz.std.model.Student;
+import com.biz.std.model.*;
 import com.biz.std.repository.GradeRepository;
 import com.biz.std.repository.ScoreRepository;
 import com.biz.std.repository.StudentRepository;
+import com.biz.std.repository.specification.GradePagingFilterSpecification;
+import com.biz.std.repository.specification.StudentPagingFilterSpecification;
 import com.biz.std.service.GradeService;
 import com.biz.std.vo.GradeVo;
+import com.biz.std.vo.PageResult;
+import com.biz.std.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -67,42 +68,14 @@ public class GradeServiceImpl implements GradeService {
      * 跳转至班级信息也 并分页显示班级信息
      */
     @Override
-    public void goGradeManager(String pageNum) {
-        int page = 1;// 当前页
-        int pageTotal;// 总页数
+    public PageResult<Grade> goGradeManager(PageVo pageVo) {
 
-        // 判断是否为分页操作
-        Pageable pageable;
-        if (null == pageNum && session.getAttribute("gradePageNum") == null) {// 初始化页面班级信息
-            pageable = new PageRequest(0, GradeServiceImpl.ENDPADING);
-        } else {// 分页操作
-            if (pageNum == null) {// 刷新页面
-                System.out.println("pageNum为空的分页操作！");
-                page = (Integer) session.getAttribute("studentPageNum");
-            } else {
-                page = Integer.parseInt(pageNum);
-            }
-            pageable = new PageRequest(page - 1, GradeServiceImpl.ENDPADING);
-        }
-        // 分页
-        Specification<Grade> specification = new Specification<Grade>() {
-            @Override
-            public Predicate toPredicate(Root<Grade> root,
-                                         CriteriaQuery<?> criteriaQuery,
-                                         CriteriaBuilder cb) {
-                Path path = root.get("state");
-                return cb.notEqual(path, "0");
-            }
-        };
-        Page<Grade> page1 = gradeRepository.findAll(specification, pageable);
-        gradeList = page1.getContent();// 当前页显示的班级
-        pageTotal = page1.getTotalPages();// 总页码
+        Pageable pageable = new PageRequest(pageVo.getPageIndex() - 1, pageVo.getPageSize());
+        Page<Grade> page = gradeRepository.findAll(new GradePagingFilterSpecification(), pageable);
+        gradeList = page.getContent();// 当前页显示的班级
         // 班级平均分处理
         this.gradeAverageProcessing(gradeList);
-        // 前台传值
-        request.setAttribute("gradeList", gradeList);
-        request.setAttribute("gradePageTotal", pageTotal);
-        session.putValue("gradePageNum", page);
+        return new PageResult<Grade>(pageVo.getPageIndex(), gradeList.size(), gradeList, page.getTotalPages());
     }
 
     /**

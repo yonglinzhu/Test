@@ -1,13 +1,17 @@
 package com.biz.std.controller;
 
+import com.biz.std.model.Grade;
+import com.biz.std.model.Score;
+import com.biz.std.model.Student;
+import com.biz.std.model.Subject;
 import com.biz.std.service.StudentService;
-import com.biz.std.vo.ScoreVo;
-import com.biz.std.vo.StudentVo;
+import com.biz.std.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +20,7 @@ import java.util.List;
 
 /**
  * 学生信息管理controller层
- *
+ * <p>
  * by zale on 2017/5/10.
  */
 @Controller
@@ -24,15 +28,19 @@ import java.util.List;
 public class StudentManagerController {
 
     @Autowired
-    private StudentService studentService;//注入
+    private StudentService studentService;// 注入StudentService
 
     /**
      * 转到学生信息管理页
      */
     @RequestMapping("/goStudentManager")
-    public String goGradeManager(String pageNum) {
-        studentService.goStudentManager(pageNum);
-        return "studentManager";
+    public ModelAndView goGradeManager(PageVo pageVo) {
+        // 获取学生信息
+        PageResult<Student> pageResult = studentService.goStudentManager(pageVo);
+        // 获取班级信息
+        List<Grade> gradeList = studentService.findGradeList();
+        return new ModelAndView("studentManager").addObject("pageResult", pageResult)
+                .addObject("student_grade", gradeList);
     }
 
     /**
@@ -66,9 +74,9 @@ public class StudentManagerController {
      * 跳转至选课页
      */
     @RequestMapping("/goAddSubject")
-    public String goAddSubject(@ModelAttribute StudentVo studentVo) {
-        studentService.goAddSubject(studentVo);
-        return "addSubject";
+    public ModelAndView goAddSubject(@ModelAttribute StudentVo studentVo) {
+        List<Subject> subjectList = studentService.goAddSubject(studentVo);
+        return new ModelAndView("addSubject").addObject("subjectsList", subjectList);
     }
 
     /**
@@ -84,9 +92,9 @@ public class StudentManagerController {
      * 跳转至分数录入页
      */
     @RequestMapping("/goEntryScore")
-    public String goEntryScore(@ModelAttribute StudentVo studentVo) {
-        studentService.goEntryScore(studentVo);
-        return "entryScore";
+    public ModelAndView goEntryScore(@ModelAttribute StudentVo studentVo) {
+        List<Score> scoreList = studentService.goEntryScore(studentVo);
+        return new ModelAndView("entryScore").addObject("scoreList", scoreList);
     }
 
     /**

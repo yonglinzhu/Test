@@ -142,21 +142,21 @@
 
         <ul class="nav nav-list">
             <li class="active">
-                <a href="<%= request.getContextPath()%>goStudentManager" class="">
+                <a href="goStudentManager" class="">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> 学生信息管理 </span>
                 </a>
                 <b class="arrow"></b>
             </li>
             <li class="">
-                <a href="<%= request.getContextPath()%>goGradeManager" class="">
+                <a href="goGradeManager" class="">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> 班级信息管理 </span>
                 </a>
                 <b class="arrow"></b>
             </li>
             <li class="">
-                <a href="<%= request.getContextPath()%>goSubjectManager" class="">
+                <a href="goSubjectManager" class="">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> 学科信息管理 </span>
                 </a>

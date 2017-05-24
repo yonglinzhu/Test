@@ -2,7 +2,10 @@ package com.biz.std.service.impl;
 
 import com.biz.std.model.*;
 import com.biz.std.repository.*;
+import com.biz.std.repository.specification.StudentPagingFilterSpecification;
 import com.biz.std.service.StudentService;
+import com.biz.std.vo.PageResult;
+import com.biz.std.vo.PageVo;
 import com.biz.std.vo.ScoreVo;
 import com.biz.std.vo.StudentVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,47 +76,22 @@ public class StudentServiceImpl implements StudentService {
      * 跳转至学生信息页 并分页显示学生信息
      */
     @Override
-    public List<StudentVo> goStudentManager(String pageNum) {
+    public PageResult<Student> goStudentManager(PageVo pageVo) {
 
-        int page = 1;// 当前页
-        int pageTotal;// 总页数
-
-        // 判断是否为分页操作
-        Pageable pageable;
-        if (null == pageNum && session.getAttribute("studentPageNum") == null) {// 初始化页面学生信息
-            pageable = new PageRequest(0, GradeServiceImpl.ENDPADING);
-        } else {// 分页操作
-            if (pageNum == null) {// 刷新页面
-                System.out.println("pageNum为空的分页操作！");
-                page = (Integer) session.getAttribute("studentPageNum");
-            } else {
-                page = Integer.parseInt(pageNum);
-            }
-            pageable = new PageRequest(page - 1, GradeServiceImpl.ENDPADING);
-        }
-        // 分页
-        Specification<Student> specification = new Specification<Student>() {
-            @Override
-            public Predicate toPredicate(Root<Student> root,
-                                         CriteriaQuery<?> criteriaQuery,
-                                         CriteriaBuilder cb) {
-                Path path = root.get("state");
-                return cb.notEqual(path, "0");
-            }
-        };
-        Page<Student> page1 = studentRepository.findAll(specification, pageable);
-        studentList = page1.getContent();// 当前页显示的学生
-        pageTotal = page1.getTotalPages();// 总页码
-
+        Pageable pageable = new PageRequest(pageVo.getPageIndex() - 1, pageVo.getPageSize());
+        Page<Student> page = studentRepository.findAll(new StudentPagingFilterSpecification(), pageable);
+        studentList = page.getContent();// 当前页显示的学生
+        // 学生平均分处理方法
         studentList = studentAverageProcessing(studentList);
-        session.putValue("studentPageNum", page);
-        // 获取所有班级信息
-        gradeList = gradeRepository.findAll();
+
         // 前台传值
-        request.setAttribute("student_grade", gradeList);
-        request.setAttribute("studentVoList", studentList);
-        request.setAttribute("studentPageTotal", pageTotal);
-        return studentVoList;
+        return new PageResult<Student>(pageVo.getPageIndex(), studentList.size(), studentList, page.getTotalPages());
+    }
+
+    @Override
+    public List<Grade> findGradeList() {
+        gradeList = gradeRepository.findAll();
+        return gradeList;
     }
 
     /**
@@ -207,17 +185,19 @@ public class StudentServiceImpl implements StudentService {
      * 跳转至选课页
      */
     @Override
-    public void goAddSubject(StudentVo studentVo) {
+    public List<Subject> goAddSubject(StudentVo studentVo) {
         // 存储学生ID
         session.putValue("studentId", studentVo.getId());
-        this.getSubject(studentVo.getId());
+        return this.getSubject(studentVo.getId());
 
     }
+    /**
+     * 筛选学生未选择的课程
+     */
+    private List<Subject> getSubject(int id) {
 
-    private void getSubject(int id) {
-        // 获取该学生已选的课程
-        scoreList = scoreRepository.findScoreByStudentId(id);
-        subjectsList = subjectRepository.getAllSubjects();
+        scoreList = scoreRepository.findScoreByStudentId(id);// 获取已选的学科ID
+        subjectsList = subjectRepository.getAllSubjects();// 获取系统所有学科
         // 去掉已选择的课程
         for (Score score : scoreList) {
             for (int i = 0; i < subjectsList.size(); i++) {
@@ -227,7 +207,7 @@ public class StudentServiceImpl implements StudentService {
                 }
             }
         }
-        request.setAttribute("subjectsList", subjectsList);
+        return subjectsList;
     }
 
     /**
@@ -254,14 +234,14 @@ public class StudentServiceImpl implements StudentService {
      * 跳转至分数录入页
      */
     @Override
-    public void goEntryScore(StudentVo studentVo) {
-        this.entryScoreView(studentVo.getId());
+    public List<Score> goEntryScore(StudentVo studentVo) {
+        return this.entryScoreView(studentVo.getId());
     }
 
-    private void entryScoreView(int id) {
+    private List<Score> entryScoreView(int id) {
         // 获取该学生已选的课程
         scoreList = scoreRepository.findScoreByStudentId(id);
-        request.setAttribute("scoreList", scoreList);
+        return scoreList;
     }
 
     /**

@@ -148,21 +148,21 @@
 
         <ul class="nav nav-list">
             <li class="active">
-                <a href="<%= request.getContextPath()%>goStudentManager" class="">
+                <a href="goStudentManager" class="">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> 学生信息管理 </span>
                 </a>
                 <b class="arrow"></b>
             </li>
             <li class="">
-                <a href="<%= request.getContextPath()%>goGradeManager" class="">
+                <a href="goGradeManager" class="">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> 班级信息管理 </span>
                 </a>
                 <b class="arrow"></b>
             </li>
             <li class="">
-                <a href="<%= request.getContextPath()%>goSubjectManager" class="">
+                <a href="goSubjectManager" class="">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> 学科信息管理 </span>
                 </a>
@@ -221,7 +221,7 @@
                                     </thead>
 
                                     <tbody>
-                                    <c:forEach items="${studentVoList}" var="student">
+                                    <c:forEach items="${pageResult.result}" var="student">
                                         <tr>
                                             <td class="center">
                                                 <label class="pos-rel">
@@ -989,8 +989,8 @@
     }
     //init
     $(function () {
-        var totalPage = ${studentPageTotal};
-        var pageNo = ${studentPageNum};
+        var totalPage = ${pageResult.total};
+        var pageNo = ${pageResult.currentPage};
         if (!pageNo) {
             pageNo = 1;
         }
@@ -1007,7 +1007,7 @@
             //链接尾部
             hrefLatter: '.action',
             getLink: function (n) {
-                return this.hrefFormer + this.hrefLatter + "?pageNum=" + n;
+                return this.hrefFormer + this.hrefLatter + "?pageIndex=" + n;
             }
         });
     });

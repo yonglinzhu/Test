@@ -1,11 +1,15 @@
 package com.biz.std.controller;
 
+import com.biz.std.model.Subject;
 import com.biz.std.service.SubjectService;
+import com.biz.std.vo.PageResult;
+import com.biz.std.vo.PageVo;
 import com.biz.std.vo.SubjectVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 学科信息管理controller层
@@ -23,9 +27,9 @@ public class SubjectManagerController {
      * 转到学科信息页
      */
     @RequestMapping("/goSubjectManager")
-    public String goSubjectManager(String pageNum) {
-        subjectService.goSubjectManager(pageNum);
-        return "subjectManager";
+    public ModelAndView goSubjectManager(PageVo pageVo) {
+        PageResult<Subject> pageResult = subjectService.goSubjectManager(pageVo);
+        return new ModelAndView("subjectManager").addObject("pageResult", pageResult);
     }
 
     /**

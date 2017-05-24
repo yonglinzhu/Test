@@ -6,7 +6,11 @@ import com.biz.std.model.Subject;
 import com.biz.std.repository.ScoreRepository;
 import com.biz.std.repository.StudentRepository;
 import com.biz.std.repository.SubjectRepository;
+import com.biz.std.repository.specification.StudentPagingFilterSpecification;
+import com.biz.std.repository.specification.SubjectPagingFilterSpecification;
 import com.biz.std.service.SubjectService;
+import com.biz.std.vo.PageResult;
+import com.biz.std.vo.PageVo;
 import com.biz.std.vo.SubjectVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,13 +39,7 @@ public class SubjectServiceImpl implements SubjectService {
     @Autowired
     private ScoreRepository scoreRepository;
     @Autowired
-    private HttpServletRequest request;
-    @Autowired
-    private HttpSession session;
-    @Autowired
     private Subject subject;
-    @Autowired
-    private Score score;
     @Autowired
     private Student student;
     @Autowired
@@ -55,43 +53,14 @@ public class SubjectServiceImpl implements SubjectService {
      * 跳转到学科管理页
      */
     @Override
-    public void goSubjectManager(String pageNum) {
-        int page = 1;// 当前页
-        int pageTotal;// 总页数
+    public PageResult<Subject> goSubjectManager(PageVo pageVo) {
 
-        // 判断是否为分页操作
-        Pageable pageable;
-        if (null == pageNum && session.getAttribute("subjectPageNum") == null) {// 初始化页面学生信息
-            pageable = new PageRequest(0, GradeServiceImpl.ENDPADING);
-        } else {// 分页操作
-            if (pageNum == null) {// 刷新页面
-                System.out.println("pageNum为空的分页操作！");
-                page = (Integer) session.getAttribute("subjectPageNum");
-            } else {
-                page = Integer.parseInt(pageNum);
-            }
-            pageable = new PageRequest(page - 1, GradeServiceImpl.ENDPADING);
-        }
-        // 分页
-        Specification<Subject> specification = new Specification<Subject>() {
-            @Override
-            public Predicate toPredicate(Root<Subject> root,
-                                         CriteriaQuery<?> criteriaQuery,
-                                         CriteriaBuilder cb) {
-                Path path = root.get("state");
-                return cb.notEqual(path, "0");
-            }
-        };
-        Page<Subject> page1 = subjectRepository.findAll(specification, pageable);
-        subjectsList = page1.getContent();// 当前页显示的学科
-        pageTotal = page1.getTotalPages();// 总页码
-        // 处理学科选修人数
+        Pageable pageable = new PageRequest(pageVo.getPageIndex() - 1, pageVo.getPageSize());
+        Page<Subject> page = subjectRepository.findAll(new SubjectPagingFilterSpecification(), pageable);
+        subjectsList = page.getContent();// 当前页显示的学科
+        // 处理学科选修人数 平均分
         subjectsList = this.initSubjectNum(subjectsList);
-        // 前台传值
-        session.putValue("subjectPageNum", page);
-        request.setAttribute("subjectsList", subjectsList);
-        request.setAttribute("subjectPageTotal", pageTotal);
-
+        return new PageResult<Subject>(pageVo.getPageIndex(), subjectsList.size(), subjectsList, page.getTotalPages());
     }
 
     /**
