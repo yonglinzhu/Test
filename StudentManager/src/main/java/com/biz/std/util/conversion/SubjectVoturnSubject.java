@@ -1,4 +1,4 @@
-package com.biz.std.service.impl;
+package com.biz.std.util.conversion;
 
 import com.biz.std.model.Subject;
 import com.biz.std.vo.SubjectVo;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * by zale on 2017/5/11.
  */
 @Service
-public class SubjectVoturnSubjectServiceImpl implements Function<SubjectVo,Subject>{
+public class SubjectVoturnSubject implements Function<SubjectVo,Subject>{
 
     @Autowired
     private Subject subject;

@@ -4,10 +4,12 @@ import com.biz.std.model.BaseStudentNum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 /**
  * by zale on 2017/5/11.
  */
+@Repository
 public interface BaseStudentNumRepository extends JpaRepository<BaseStudentNum, Integer> {
     @Query(value = "select count(id) from tb_baseStudentNum ", nativeQuery = true)
     int checkBaseStudentNum();

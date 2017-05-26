@@ -1,6 +1,5 @@
 package com.biz.std.controller;
 
-import com.biz.std.model.Subject;
 import com.biz.std.service.SubjectService;
 import com.biz.std.vo.PageResult;
 import com.biz.std.vo.PageVo;
@@ -28,7 +27,7 @@ public class SubjectManagerController {
      */
     @RequestMapping("/goSubjectManager")
     public ModelAndView goSubjectManager(PageVo pageVo) {
-        PageResult<Subject> pageResult = subjectService.goSubjectManager(pageVo);
+        PageResult<SubjectVo> pageResult = subjectService.goSubjectManager(pageVo);
         return new ModelAndView("subjectManager").addObject("pageResult", pageResult);
     }
 

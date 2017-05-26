@@ -5,8 +5,9 @@ import com.biz.std.repository.GradeRepository;
 import com.biz.std.repository.ScoreRepository;
 import com.biz.std.repository.StudentRepository;
 import com.biz.std.repository.specification.GradePagingFilterSpecification;
-import com.biz.std.repository.specification.StudentPagingFilterSpecification;
 import com.biz.std.service.GradeService;
+import com.biz.std.util.conversion.GradeListTurnGradeVoList;
+import com.biz.std.util.conversion.GradeVoturnGrade;
 import com.biz.std.vo.GradeVo;
 import com.biz.std.vo.PageResult;
 import com.biz.std.vo.PageVo;
@@ -14,10 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -34,7 +33,7 @@ public class GradeServiceImpl implements GradeService {
     @Autowired
     private ScoreRepository scoreRepository;
     @Autowired
-    private GradeVoturnGradeServiceImpl gradeVoturnGradeService;
+    private GradeVoturnGrade gradeVoturnGradeService;
     @Autowired
     private BaseStudentNumSerivceImpl baseStudentNumSerivce;
     @Autowired
@@ -68,14 +67,17 @@ public class GradeServiceImpl implements GradeService {
      * 跳转至班级信息也 并分页显示班级信息
      */
     @Override
-    public PageResult<Grade> goGradeManager(PageVo pageVo) {
+    public PageResult<GradeVo> goGradeManager(PageVo pageVo) {
 
         Pageable pageable = new PageRequest(pageVo.getPageIndex() - 1, pageVo.getPageSize());
         Page<Grade> page = gradeRepository.findAll(new GradePagingFilterSpecification(), pageable);
         gradeList = page.getContent();// 当前页显示的班级
         // 班级平均分处理
         this.gradeAverageProcessing(gradeList);
-        return new PageResult<Grade>(pageVo.getPageIndex(), gradeList.size(), gradeList, page.getTotalPages());
+        // Turn
+        List<GradeVo> gradeVoList = new GradeListTurnGradeVoList().apply(gradeList);
+
+        return new PageResult<GradeVo>(pageVo.getPageIndex(), gradeVoList.size(), gradeVoList, page.getTotalPages());
     }
 
     /**

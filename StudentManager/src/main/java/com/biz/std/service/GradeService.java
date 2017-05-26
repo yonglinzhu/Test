@@ -13,7 +13,7 @@ import org.springframework.data.domain.Page;
  */
 public interface GradeService {
 
-    PageResult<Grade> goGradeManager(PageVo pageVo);// 跳转至班级信息管理页
+    PageResult<GradeVo> goGradeManager(PageVo pageVo);// 跳转至班级信息管理页
 
     void saveGrade(GradeVo gradeVo);// 保存班级
 

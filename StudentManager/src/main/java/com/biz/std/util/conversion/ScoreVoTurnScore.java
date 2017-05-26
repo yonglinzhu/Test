@@ -1,4 +1,4 @@
-package com.biz.std.service.impl;
+package com.biz.std.util.conversion;
 
 import com.biz.std.model.Score;
 import com.biz.std.vo.ScoreVo;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * by zale on 2017/5/11.
  */
 @Service
-public class ScoreVoTurnScoreServiceImpl implements Function<ScoreVo, Score> {
+public class ScoreVoTurnScore implements Function<ScoreVo, Score> {
 
     @Autowired
     private Score score;

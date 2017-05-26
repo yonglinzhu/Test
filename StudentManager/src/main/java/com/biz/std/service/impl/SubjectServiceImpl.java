@@ -6,9 +6,10 @@ import com.biz.std.model.Subject;
 import com.biz.std.repository.ScoreRepository;
 import com.biz.std.repository.StudentRepository;
 import com.biz.std.repository.SubjectRepository;
-import com.biz.std.repository.specification.StudentPagingFilterSpecification;
 import com.biz.std.repository.specification.SubjectPagingFilterSpecification;
 import com.biz.std.service.SubjectService;
+import com.biz.std.util.conversion.SubjectListTurnSubjectVoList;
+import com.biz.std.util.conversion.SubjectVoturnSubject;
 import com.biz.std.vo.PageResult;
 import com.biz.std.vo.PageVo;
 import com.biz.std.vo.SubjectVo;
@@ -16,12 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -33,7 +30,7 @@ public class SubjectServiceImpl implements SubjectService {
     @Autowired
     private SubjectRepository subjectRepository;// 注入
     @Autowired
-    private SubjectVoturnSubjectServiceImpl subjectVoturnSubjectService;
+    private SubjectVoturnSubject subjectVoturnSubjectService;
     @Autowired
     private StudentRepository studentRepository;
     @Autowired
@@ -53,14 +50,16 @@ public class SubjectServiceImpl implements SubjectService {
      * 跳转到学科管理页
      */
     @Override
-    public PageResult<Subject> goSubjectManager(PageVo pageVo) {
+    public PageResult<SubjectVo> goSubjectManager(PageVo pageVo) {
 
         Pageable pageable = new PageRequest(pageVo.getPageIndex() - 1, pageVo.getPageSize());
         Page<Subject> page = subjectRepository.findAll(new SubjectPagingFilterSpecification(), pageable);
         subjectsList = page.getContent();// 当前页显示的学科
         // 处理学科选修人数 平均分
         subjectsList = this.initSubjectNum(subjectsList);
-        return new PageResult<Subject>(pageVo.getPageIndex(), subjectsList.size(), subjectsList, page.getTotalPages());
+        // Turn
+        List<SubjectVo> subjectVoList = new SubjectListTurnSubjectVoList().apply(subjectsList);
+        return new PageResult<SubjectVo>(pageVo.getPageIndex(), subjectVoList.size(), subjectVoList, page.getTotalPages());
     }
 
     /**

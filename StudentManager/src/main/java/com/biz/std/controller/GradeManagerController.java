@@ -1,6 +1,5 @@
 package com.biz.std.controller;
 
-import com.biz.std.model.Grade;
 import com.biz.std.service.GradeService;
 import com.biz.std.vo.GradeVo;
 import com.biz.std.vo.PageResult;
@@ -13,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 班级信息管理controller层
- *
+ * <p>
  * by zale on 2017/5/10.
  */
 @Controller
@@ -28,7 +27,7 @@ public class GradeManagerController {
      */
     @RequestMapping("/goGradeManager")
     public ModelAndView goGradeManager(PageVo pageVo) {
-        PageResult<Grade> pageResult = gradeService.goGradeManager(pageVo);
+        PageResult<GradeVo> pageResult = gradeService.goGradeManager(pageVo);
         return new ModelAndView("gradeManager").addObject("pageResult", pageResult);
     }
 

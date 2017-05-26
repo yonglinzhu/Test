@@ -1,4 +1,4 @@
-package com.biz.std.service.impl;
+package com.biz.std.util.conversion;
 
 import com.biz.std.model.Student;
 import com.biz.std.vo.StudentVo;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * by zale on 2017/5/11.
  */
 @Service
-public class StudentVoturnStudentServiceImpl implements Function<StudentVo, Student> {
+public class StudentVoturnStudent implements Function<StudentVo, Student> {
     @Autowired
     private Student student;
 

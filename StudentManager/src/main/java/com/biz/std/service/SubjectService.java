@@ -12,7 +12,7 @@ import com.biz.std.vo.SubjectVo;
  */
 public interface SubjectService {
 
-    PageResult<Subject> goSubjectManager(PageVo pageVo);// 跳转至学科信息管理页
+    PageResult<SubjectVo> goSubjectManager(PageVo pageVo);// 跳转至学科信息管理页
 
     void saveSubject(SubjectVo subjectVo);// 添加学科信息
 

@@ -1,14 +1,9 @@
 package com.biz.std.controller;
 
-import com.biz.std.model.Grade;
-import com.biz.std.model.Score;
-import com.biz.std.model.Student;
-import com.biz.std.model.Subject;
 import com.biz.std.service.StudentService;
 import com.biz.std.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,11 +31,11 @@ public class StudentManagerController {
     @RequestMapping("/goStudentManager")
     public ModelAndView goGradeManager(PageVo pageVo) {
         // 获取学生信息
-        PageResult<Student> pageResult = studentService.goStudentManager(pageVo);
+        PageResult<StudentVo> pageResult = studentService.goStudentManager(pageVo);
         // 获取班级信息
-        List<Grade> gradeList = studentService.findGradeList();
+        List<GradeVo> gradeVoList = studentService.findGradeList();
         return new ModelAndView("studentManager").addObject("pageResult", pageResult)
-                .addObject("student_grade", gradeList);
+                .addObject("student_grade", gradeVoList);
     }
 
     /**
@@ -75,8 +70,8 @@ public class StudentManagerController {
      */
     @RequestMapping("/goAddSubject")
     public ModelAndView goAddSubject(@ModelAttribute StudentVo studentVo) {
-        List<Subject> subjectList = studentService.goAddSubject(studentVo);
-        return new ModelAndView("addSubject").addObject("subjectsList", subjectList);
+        List<SubjectVo> subjectVoList = studentService.goAddSubject(studentVo);
+        return new ModelAndView("addSubject").addObject("subjectsList", subjectVoList);
     }
 
     /**
@@ -93,8 +88,8 @@ public class StudentManagerController {
      */
     @RequestMapping("/goEntryScore")
     public ModelAndView goEntryScore(@ModelAttribute StudentVo studentVo) {
-        List<Score> scoreList = studentService.goEntryScore(studentVo);
-        return new ModelAndView("entryScore").addObject("scoreList", scoreList);
+        List<ScoreVo> scoreVoList = studentService.goEntryScore(studentVo);
+        return new ModelAndView("entryScore").addObject("scoreList", scoreVoList);
     }
 
     /**
@@ -111,7 +106,6 @@ public class StudentManagerController {
      */
     @RequestMapping("/uploadPicture")
     public String uploadPicture(StudentVo studentVo, HttpServletRequest request) throws IOException {
-        System.out.println(studentVo);
         studentService.uploadPicture(studentVo, request);
         return "redirect:/goStudentManager";
     }

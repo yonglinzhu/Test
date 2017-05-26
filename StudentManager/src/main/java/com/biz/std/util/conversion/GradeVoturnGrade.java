@@ -1,4 +1,4 @@
-package com.biz.std.service.impl;
+package com.biz.std.util.conversion;
 
 import com.biz.std.model.Grade;
 import com.biz.std.vo.GradeVo;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * by zale on 2017/5/11.
  */
 @Service
-public class GradeVoturnGradeServiceImpl implements Function<GradeVo,Grade>{
+public class GradeVoturnGrade implements Function<GradeVo,Grade>{
     @Autowired
     private Grade grade;
 
