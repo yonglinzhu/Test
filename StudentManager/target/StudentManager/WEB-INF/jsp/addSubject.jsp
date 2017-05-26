@@ -211,7 +211,7 @@
                                             <td>${subject.name}</td>
                                             <td class="center">
                                                 <div class="hidden-sm hidden-xs btn-group">
-                                                    <a href="addSubject?subjectId=${subject.id}&subjectName=${subject.name}" data-toggle="modal"
+                                                    <a href="addSubject?subjectId=${subject.id}&subjectName=${subject.name}"
                                                        class="btn btn-xs btn-success"
                                                        title="选修该课">
                                                         <i class="ace-icon fa fa-pencil bigger-120"></i>

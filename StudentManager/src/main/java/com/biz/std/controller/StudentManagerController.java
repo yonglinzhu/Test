@@ -70,6 +70,7 @@ public class StudentManagerController {
      */
     @RequestMapping("/goAddSubject")
     public ModelAndView goAddSubject(@ModelAttribute StudentVo studentVo) {
+        System.out.println("controller:"+studentVo);
         List<SubjectVo> subjectVoList = studentService.goAddSubject(studentVo);
         return new ModelAndView("addSubject").addObject("subjectsList", subjectVoList);
     }

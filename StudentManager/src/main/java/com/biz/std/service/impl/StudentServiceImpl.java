@@ -53,8 +53,6 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private Score scoreTemp;
     @Autowired
-    private Grade grade;
-    @Autowired
     private BaseStudentNum baseStudentNum;
     @Autowired
     private List<Student> studentList; // 接收数据库查询的学生列表
@@ -153,8 +151,8 @@ public class StudentServiceImpl implements StudentService {
     private StudentVo initStudentnumber(StudentVo studentVo) {
         // 获取班级基础学号
         baseStudentNum = baseStudentNumRepository.findBaseStudentNumByGradeId(studentVo.getGrade_id());
-        String baseNum = baseStudentNum.getBaseNum();
         int identification = Integer.parseInt(baseStudentNum.getIdentification()) + 1;
+        String baseNum = baseStudentNum.getBaseNum();
         studentVo.setNumber(baseNum + identification);// 初始化学生学号
         // baseStudentNum 更新
         baseStudentNum.setIdentification(identification + "");
@@ -168,8 +166,17 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public List<SubjectVo> goAddSubject(StudentVo studentVo) {
-        // 存储学生ID - [增加选修课程时用]
-        session.putValue("studentId", studentVo.getId());
+        if (session.getAttribute("studentId_goAddSubject") != null) {
+            return this.getSubject((Integer) session.getAttribute("studentId_goAddSubject"));
+        } else {
+            /**
+             *  存储学生ID
+             *
+             *  1、选修课程操作-用
+             *  2、重定向-用（处理NullPointerException）
+             */
+            session.putValue("studentId_goAddSubject", studentVo.getId());
+        }
         return this.getSubject(studentVo.getId());
 
     }
@@ -178,7 +185,6 @@ public class StudentServiceImpl implements StudentService {
      * 获取学生未选课程
      */
     private List<SubjectVo> getSubject(int id) {
-
         scoreList = scoreRepository.findScoreByStudentId(id);// 获取已选的学科ID
         subjectsList = subjectRepository.getAllSubjects();// 获取系统所有学科
         // 去掉已选择的课程
@@ -200,7 +206,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void addSubject(ScoreVo scoreVo) {
         scoreVo.setState(GradeServiceImpl.ACTIVESTATECODE);
-        int sutdentId = (Integer) session.getAttribute("studentId");
+        int sutdentId = (Integer) session.getAttribute("studentId_goAddSubject");
         scoreVo.setStudentId(sutdentId);
         scoreVo.setScore(0);
         // Vo 转 PO
@@ -219,6 +225,16 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public List<ScoreVo> goEntryScore(StudentVo studentVo) {
+        if (session.getAttribute("studentId_EntryScore") != null) {
+            return this.entryScoreView((Integer) session.getAttribute("studentId_EntryScore"));
+        } else {
+            /**
+             *  存储学生ID
+             *
+             *  1、重定向-用（处理NullPointerException）
+             */
+            session.putValue("studentId_EntryScore", studentVo.getId());
+        }
         return this.entryScoreView(studentVo.getId());
     }
 
@@ -238,11 +254,25 @@ public class StudentServiceImpl implements StudentService {
         score = scoreVoTurnScoreService.apply(scoreVo);
         // 根据ID查询其所有分数的信息
         scoreTemp = scoreRepository.findScoreById(score.getId());
-        // 更新数据
-        scoreTemp.setScore(score.getScore());
+        // 处理并更新数据
+        scoreTemp.setScore(handleScore(score.getScore()));
         // 数据库更新
         scoreRepository.save(scoreTemp);
 
+    }
+
+    /**
+     * 处理录入的分数
+     * <p>
+     * 只是简单处理一下分数范围
+     */
+    private double handleScore(double score) {
+        if (score > 150) {
+            score = 150;
+        } else if (score < 0) {
+            score = 0;
+        }
+        return score;
     }
 
     /**
