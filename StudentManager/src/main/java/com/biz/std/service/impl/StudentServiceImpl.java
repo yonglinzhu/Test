@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,8 +42,6 @@ public class StudentServiceImpl implements StudentService {
     private StudentVoturnStudent studentVoturnStudentService;
     @Autowired
     private ScoreVoTurnScore scoreVoTurnScoreService;
-    @Autowired
-    private HttpServletRequest request;
     @Autowired
     private HttpSession session;
     @Autowired
@@ -107,20 +106,7 @@ public class StudentServiceImpl implements StudentService {
         // Vo转PO
         student = studentVoturnStudentService.apply(studentVo);
         studentRepository.save(student);
-        // 更新班级人数
-        updateGradeNum(student.getGrade_id());
 
-    }
-
-    /**
-     * 更新班级人数
-     */
-    private void updateGradeNum(int gid) {
-        // 更新班级人数
-        int count = studentRepository.countStudentByGrade_id(gid);
-        grade = gradeRepository.findOne(gid);
-        grade.setNumber(count);
-        gradeRepository.save(grade);
     }
 
     /**
@@ -159,10 +145,6 @@ public class StudentServiceImpl implements StudentService {
         }
         // 更新数据库
         studentRepository.save(studentTemp);
-        if ("delete".equals(flag)) {
-            // 更新班级人数
-            updateGradeNum(studentTemp.getGrade_id());
-        }
     }
 
     /**
@@ -278,7 +260,9 @@ public class StudentServiceImpl implements StudentService {
                         sumScore += s.getScore();
                     }
                     double averageScore = sumScore / scoreList.size();// 平均分
-                    studentList.get(i).setAverage(averageScore);
+                    // 保留两位小数
+                    BigDecimal bg = new BigDecimal(averageScore);
+                    studentList.get(i).setAverage(bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
                 } else {
                     studentList.get(i).setAverage(0);
                 }

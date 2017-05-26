@@ -174,7 +174,7 @@
         <div class="main-content-inner">
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <div style="margin-left: 20px;">
-                    <a href="javascript:;" role="button" class="btn btn-xs btn-success" data-toggle="modal">录入分数 </a>
+                    <a href="goStudentManager" class="btn btn-xs btn-success">返回学生列表 </a>
                 </div>
                 <div class="nav-search" id="nav-search">
                     <form class="form-search">

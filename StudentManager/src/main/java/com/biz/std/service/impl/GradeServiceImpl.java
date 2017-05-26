@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -48,10 +49,6 @@ public class GradeServiceImpl implements GradeService {
     private List<Score> scoreList;
     @Autowired
     private List<Student> studentList; // 接收数据库查询的学生列表
-    @Autowired
-    private HttpServletRequest request;
-    @Autowired
-    private HttpSession session;
     /**
      * 状态码值
      */
@@ -103,8 +100,11 @@ public class GradeServiceImpl implements GradeService {
                         }
                     }
                     sumScoreForGrade = sumScoreForGrade / studentList.size();// 平均分
-
-                    gradeList.get(i).setAverage(sumScoreForGrade);
+                    // 保留两位小数
+                    BigDecimal bg = new BigDecimal(sumScoreForGrade);
+                    gradeList.get(i).setAverage(bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+                    // 学生人数
+                    gradeList.get(i).setNumber(studentList.size());
                     sumScoreForGrade = 0;// 初始化
                 } else { // 班级没有学生
                     gradeList.get(i).setAverage(0);
