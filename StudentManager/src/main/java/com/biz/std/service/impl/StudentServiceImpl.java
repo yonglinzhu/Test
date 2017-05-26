@@ -166,7 +166,7 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public List<SubjectVo> goAddSubject(StudentVo studentVo) {
-        if (session.getAttribute("studentId_goAddSubject") != null) {
+        if (session.getAttribute("studentId_goAddSubject") != null && studentVo.getId() == null) {
             return this.getSubject((Integer) session.getAttribute("studentId_goAddSubject"));
         } else {
             /**
@@ -225,7 +225,7 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public List<ScoreVo> goEntryScore(StudentVo studentVo) {
-        if (session.getAttribute("studentId_EntryScore") != null) {
+        if (session.getAttribute("studentId_EntryScore") != null && studentVo.getId() == null) {
             return this.entryScoreView((Integer) session.getAttribute("studentId_EntryScore"));
         } else {
             /**
