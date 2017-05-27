@@ -6,6 +6,7 @@ import com.biz.std.repository.specification.StudentPagingFilterSpecification;
 import com.biz.std.service.StudentService;
 import com.biz.std.util.conversion.*;
 import com.biz.std.vo.*;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,26 +45,6 @@ public class StudentServiceImpl implements StudentService {
     private ScoreVoTurnScore scoreVoTurnScoreService;
     @Autowired
     private HttpSession session;
-    @Autowired
-    private Student student;
-    @Autowired
-    private Student studentTemp;
-    @Autowired
-    private Score score;
-    @Autowired
-    private Score scoreTemp;
-    @Autowired
-    private BaseStudentNum baseStudentNum;
-    @Autowired
-    private List<Student> studentList; // 接收数据库查询的学生列表
-    @Autowired
-    private List<StudentVo> studentVoList; // 传到controller层的学生列表
-    @Autowired
-    private List<Grade> gradeList;// 接收数据库查询的班级列表
-    @Autowired
-    private List<Score> scoreList;// 接收数据库查询的学科列表
-    @Autowired
-    private List<Subject> subjectsList;// 接收数据库查询的班级列表
 
     /**
      * 跳转至学生信息页 并分页显示学生信息
@@ -73,11 +54,12 @@ public class StudentServiceImpl implements StudentService {
 
         Pageable pageable = new PageRequest(pageVo.getPageIndex() - 1, pageVo.getPageSize());
         Page<Student> page = studentRepository.findAll(new StudentPagingFilterSpecification(), pageable);
-        studentList = page.getContent();// 当前页显示的学生
+
+        List<Student> studentList = page.getContent();// 当前页显示的学生
         // 学生平均分处理方法
         studentList = studentAverageProcessing(studentList);
         // Turn
-        studentVoList = new StudentListTurnStudentVoList().apply(studentList);
+        List<StudentVo> studentVoList = new StudentListTurnStudentVoList().apply(studentList);
         // 前台传值
         return new PageResult<StudentVo>(pageVo.getPageIndex(), studentVoList.size(), studentVoList, page.getTotalPages());
     }
@@ -87,7 +69,7 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public List<GradeVo> findGradeList() {
-        gradeList = gradeRepository.findAll();
+        List<Grade> gradeList = gradeRepository.findAll();
         List<GradeVo> gradeVoList = new GradeListTurnGradeVoList().apply(gradeList);
         return gradeVoList;
     }
@@ -102,7 +84,7 @@ public class StudentServiceImpl implements StudentService {
         // 初始化学号
         studentVo = this.initStudentnumber(studentVo);
         // Vo转PO
-        student = studentVoturnStudentService.apply(studentVo);
+        Student student = studentVoturnStudentService.apply(studentVo);
         studentRepository.save(student);
 
     }
@@ -128,9 +110,9 @@ public class StudentServiceImpl implements StudentService {
      */
     private void updateOrDeleteSubject(StudentVo studentVo, String flag) {
         // Vo转PO
-        student = studentVoturnStudentService.apply(studentVo);
+        Student student = studentVoturnStudentService.apply(studentVo);
         // 通过学生ID获取该学生信息
-        studentTemp = studentRepository.findOne(student.getId());
+        Student studentTemp = studentRepository.findOne(student.getId());
         if ("update".equals(flag)) {// update
             // 修改学生名称信息
             studentTemp.setName(student.getName());
@@ -150,7 +132,7 @@ public class StudentServiceImpl implements StudentService {
      */
     private StudentVo initStudentnumber(StudentVo studentVo) {
         // 获取班级基础学号
-        baseStudentNum = baseStudentNumRepository.findBaseStudentNumByGradeId(studentVo.getGrade_id());
+        BaseStudentNum baseStudentNum = baseStudentNumRepository.findBaseStudentNumByGradeId(studentVo.getGrade_id());
         int identification = Integer.parseInt(baseStudentNum.getIdentification()) + 1;
         String baseNum = baseStudentNum.getBaseNum();
         studentVo.setNumber(baseNum + identification);// 初始化学生学号
@@ -185,8 +167,8 @@ public class StudentServiceImpl implements StudentService {
      * 获取学生未选课程
      */
     private List<SubjectVo> getSubject(int id) {
-        scoreList = scoreRepository.findScoreByStudentId(id);// 获取已选的学科ID
-        subjectsList = subjectRepository.getAllSubjects();// 获取系统所有学科
+        List<Score> scoreList = scoreRepository.findScoreByStudentId(id);// 获取已选的学科ID
+        List<Subject> subjectsList = subjectRepository.getAllSubjects();// 获取系统所有学科
         // 去掉已选择的课程
         for (Score score : scoreList) {
             for (int i = 0; i < subjectsList.size(); i++) {
@@ -210,12 +192,12 @@ public class StudentServiceImpl implements StudentService {
         scoreVo.setStudentId(sutdentId);
         scoreVo.setScore(0);
         // Vo 转 PO
-        score = scoreVoTurnScoreService.apply(scoreVo);
+        Score score = scoreVoTurnScoreService.apply(scoreVo);
         // 数据库更新
         scoreRepository.save(score);
         // 更新学生选课数
-        scoreList = scoreRepository.findScoreByStudentId(sutdentId);
-        student = studentRepository.findOne(sutdentId);
+        List<Score> scoreList = scoreRepository.findScoreByStudentId(sutdentId);
+        Student student = studentRepository.findOne(sutdentId);
         student.setSub_num(scoreList.size());
         studentRepository.save(student);
     }
@@ -240,7 +222,7 @@ public class StudentServiceImpl implements StudentService {
 
     private List<ScoreVo> entryScoreView(int id) {
         // 获取该学生已选的课程
-        scoreList = scoreRepository.findScoreByStudentId(id);
+        List<Score> scoreList = scoreRepository.findScoreByStudentId(id);
         List<ScoreVo> scoreVoList = new ScoreListTurnScoreVoList().apply(scoreList);
         return scoreVoList;
     }
@@ -251,9 +233,9 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void entryScore(ScoreVo scoreVo) {
         // Vo 转 PO
-        score = scoreVoTurnScoreService.apply(scoreVo);
+        Score score = scoreVoTurnScoreService.apply(scoreVo);
         // 根据ID查询其所有分数的信息
-        scoreTemp = scoreRepository.findScoreById(score.getId());
+        Score scoreTemp = scoreRepository.findScoreById(score.getId());
         // 处理并更新数据
         scoreTemp.setScore(handleScore(score.getScore()));
         // 数据库更新
@@ -283,7 +265,7 @@ public class StudentServiceImpl implements StudentService {
         // 获取学生选择的所有学科
         if (studentList != null && studentList.size() != 0) {
             for (int i = 0; i < studentList.size(); i++) {
-                scoreList = scoreRepository.findScoreByStudentId(studentList.get(i).getId());
+                List<Score> scoreList = scoreRepository.findScoreByStudentId(studentList.get(i).getId());
                 double sumScore = 0;// 总分数
                 if (scoreList.size() != 0 && scoreList != null) {
                     for (Score s : scoreList) {
@@ -332,7 +314,7 @@ public class StudentServiceImpl implements StudentService {
             //获取一个文件的保存路径
             String path = realPath + "/" + uuidName;
             // 数据库更新
-            student = studentRepository.findOne(studentVo.getId());
+            Student student = studentRepository.findOne(studentVo.getId());
             student.setPicture(path);
             studentRepository.save(student);
             try {
@@ -351,7 +333,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void pictureView(StudentVo studentVo, HttpServletResponse response) throws IOException {
         // 通过学生ID获取头像地址
-        student = studentRepository.findOne(studentVo.getId());
+        Student student = studentRepository.findOne(studentVo.getId());
         String path = student.getPicture();
         if (!"--".equals(path)) {
             //读取本地图片输入流

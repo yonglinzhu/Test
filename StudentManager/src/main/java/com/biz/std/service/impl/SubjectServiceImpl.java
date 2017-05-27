@@ -35,16 +35,6 @@ public class SubjectServiceImpl implements SubjectService {
     private StudentRepository studentRepository;
     @Autowired
     private ScoreRepository scoreRepository;
-    @Autowired
-    private Subject subject;
-    @Autowired
-    private Student student;
-    @Autowired
-    private Subject subjectTemp; // 接收数据库返回的学科对象
-    @Autowired
-    private List<Subject> subjectsList; // 接收数据库查询的学科列表
-    @Autowired
-    private List<Score> scoretsList; // 接收数据库查询的学科列表
 
     /**
      * 跳转到学科管理页
@@ -54,7 +44,7 @@ public class SubjectServiceImpl implements SubjectService {
 
         Pageable pageable = new PageRequest(pageVo.getPageIndex() - 1, pageVo.getPageSize());
         Page<Subject> page = subjectRepository.findAll(new SubjectPagingFilterSpecification(), pageable);
-        subjectsList = page.getContent();// 当前页显示的学科
+        List<Subject> subjectsList = page.getContent();// 当前页显示的学科
         // 处理学科选修人数 平均分
         subjectsList = this.initSubjectNum(subjectsList);
         // Turn
@@ -69,7 +59,7 @@ public class SubjectServiceImpl implements SubjectService {
         for (int i = 0; i < subjectsList.size(); i++) {
             int sid = subjectsList.get(i).getId();
             // 查询选修人数
-            scoretsList = scoreRepository.countStudentsbySubjectId(sid);
+            List<Score> scoretsList = scoreRepository.countStudentsbySubjectId(sid);
             subjectsList.get(i).setNumber(scoretsList.size());// 选修人数
             // 平均分
             int sum = 0;
@@ -94,7 +84,7 @@ public class SubjectServiceImpl implements SubjectService {
         subjectVo.setAverage(0);
         subjectVo.setState(GradeServiceImpl.ACTIVESTATECODE);
         // Vo 转 PO
-        subject = subjectVoturnSubjectService.apply(subjectVo);
+        Subject subject = subjectVoturnSubjectService.apply(subjectVo);
         // 校验学科名称是否重复
         int counts = subjectRepository.checkSubjectByName(subject.getName());
         if (counts < 1 && subjectVo.getName() != null) {// 学科无重复
@@ -119,9 +109,9 @@ public class SubjectServiceImpl implements SubjectService {
         this.updateOrDeleteSubject(subjectVo, "delete");
 
         // 更新学生选课数
-        scoretsList = scoreRepository.findScorebySubjectId(subjectVo.getId());
+        List<Score> scoretsList = scoreRepository.findScorebySubjectId(subjectVo.getId());
         for (Score score : scoretsList) {
-            student = studentRepository.findOne(score.getStudentId());
+            Student student = studentRepository.findOne(score.getStudentId());
             student.setSub_num(student.getSub_num() - 1);
             studentRepository.save(student);
         }
@@ -138,9 +128,9 @@ public class SubjectServiceImpl implements SubjectService {
      */
     private void updateOrDeleteSubject(SubjectVo subjectVo, String flag) {
         // Vo转PO
-        subject = subjectVoturnSubjectService.apply(subjectVo);
+        Subject subject = subjectVoturnSubjectService.apply(subjectVo);
         // 通过学科ID获取该学科
-        subjectTemp = subjectRepository.findSubjectById(subject.getId());
+        Subject subjectTemp = subjectRepository.findSubjectById(subject.getId());
         if ("update".equals(flag)) {// update
             // 修改学科名称信息
             subjectTemp.setName(subject.getName());
