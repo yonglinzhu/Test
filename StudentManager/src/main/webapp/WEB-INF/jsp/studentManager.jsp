@@ -258,11 +258,11 @@
 
                                             <td class="center">
                                                 <div class="hidden-sm hidden-xs btn-group">
-                                                    <a href="goEntryScore?id=${student.id}"
+                                                    <a href="goEntryScore?id=<c:out value="${student.id}"/>"
                                                        class="btn btn-xs btn-warning" title="录入已选课程分数">
                                                         <i class="ace-icon fa fa-flag bigger-120"></i>
                                                     </a>
-                                                    <a href="goAddSubject?id=${student.id}"
+                                                    <a href="goAddSubject?id=<c:out value="${student.id}"/>"
                                                        class="btn btn-xs btn-success" title="选修课程">
                                                         <i class="ace-icon fa fa-check bigger-120"></i>
                                                     </a>
@@ -274,7 +274,7 @@
                                                         <i class="ace-icon fa fa-pencil bigger-120"></i>
                                                     </a>
 
-                                                    <a href="deleteStudent?id=${student.id}"
+                                                    <a href="deleteStudent?id=<c:out value="${student.id}"/>"
                                                        class="btn btn-xs btn-danger" title="删除该学生信息">
                                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                     </a>
@@ -336,7 +336,7 @@
                                                                            data-toggle="modal"
                                                                            id="upload-view-div">
                                                                             <img id="" border="0"
-                                                                                 src="pictureView?id=${student.id}"
+                                                                                 src="pictureView?id=<c:out value="${student.id}"/>"
                                                                                  width="90" height="90">
                                                                         </a>
                                                                     </div>
@@ -391,8 +391,7 @@
                                                                     <div class="profile-info-name"> 生日</div>
 
                                                                     <div class="profile-info-value">
-                                                                        <span><c:out
-                                                                                value="${student.birthday}"/></span>
+                                                                        <span><c:out value="${student.birthday}"/></span>
                                                                     </div>
                                                                 </div>
 
@@ -511,7 +510,7 @@
                                                     <option value="0"></option>
                                                     <c:forEach items="${student_grade}" var="grade">
                                                         <c:if test="${grade.state != '0'}">
-                                                            <option value="${grade.id}">${grade.classname}</option>
+                                                            <option value="<c:out value="${grade.id}"/>"><c:out value="${grade.classname}"/></option>
                                                         </c:if>
                                                     </c:forEach>
                                                 </select>
@@ -579,7 +578,7 @@
                                                     <option value="0"></option>
                                                     <c:forEach items="${student_grade}" var="grade">
                                                         <c:if test="${grade.state != '0'}">
-                                                            <option value="${grade.id}">${grade.classname}</option>
+                                                            <option value="<c:out value="${grade.id}"/>"><c:out value="${grade.classname}"/></option>
                                                         </c:if>
                                                     </c:forEach>
                                                 </select>

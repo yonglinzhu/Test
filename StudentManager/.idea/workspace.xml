@@ -28,26 +28,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StudentService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/service/StudentService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubjectService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/service/SubjectService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="FileUpLoadController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/controller/FileUpLoadController.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -71,14 +51,73 @@
       <file leaf-file-name="FileUpLoadServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/service/impl/FileUpLoadServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-594">
-              <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+            <state relative-caret-position="81">
+              <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScoreRepository.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StudentServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/service/impl/StudentServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-648">
+              <caret line="104" column="17" lean-forward="true" selection-start-line="104" selection-start-column="17" selection-end-line="104" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="studentManager.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/studentManager.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="93">
+              <caret line="613" column="34" lean-forward="true" selection-start-line="613" selection-start-column="34" selection-end-line="613" selection-end-column="34" />
+              <folding>
+                <marker date="1496649296150" expanded="true" signature="1409:1448" ph="..." />
+                <marker date="1496649296150" expanded="true" signature="54828:54937" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gradeManager.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gradeManager.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-216">
+              <caret line="268" column="134" lean-forward="false" selection-start-line="268" selection-start-column="134" selection-end-line="268" selection-end-column="134" />
+              <folding>
+                <marker date="1496649415733" expanded="true" signature="1419:1458" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="subjectManager.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/subjectManager.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-522">
+              <caret line="263" column="108" lean-forward="false" selection-start-line="263" selection-start-column="108" selection-end-line="263" selection-end-column="108" />
+              <folding>
+                <marker date="1496649464799" expanded="true" signature="1412:1451" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addSubject.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/addSubject.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-423">
+              <caret line="217" column="85" lean-forward="true" selection-start-line="217" selection-start-column="85" selection-end-line="217" selection-end-column="85" />
+              <folding>
+                <marker date="1496649652562" expanded="true" signature="1412:1451" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScoreRepository.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/repository/ScoreRepository.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-191">
@@ -93,36 +132,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
               <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScoreManagerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/controller/ScoreManagerController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StudentManagerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/controller/StudentManagerController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1215">
-              <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubjectManagerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/controller/SubjectManagerController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1296">
-              <caret line="56" column="48" lean-forward="false" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -231,16 +240,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/biz/std/model/common/Sex.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/biz/std/model/Student.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/biz/std/vo/StudentVo.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/addSubject.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/entryScore.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/subjectManager.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gradeManager.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/studentManager.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/biz/std/service/impl/StudentServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/biz/std/service/impl/GradeServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/biz/std/controller/FileUpLoadController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/biz/std/controller/GradeManagerController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/biz/std/controller/ScoreManagerController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/studentManager.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gradeManager.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/subjectManager.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/addSubject.jsp" />
       </list>
     </option>
   </component>
@@ -300,6 +309,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="StudentManager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentManager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StudentManager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1423,7 +1446,7 @@
       <workItem from="1496496511234" duration="6860000" />
       <workItem from="1496582567719" duration="1118000" />
       <workItem from="1496584021776" duration="8723000" />
-      <workItem from="1496620744323" duration="19568000" />
+      <workItem from="1496620744323" duration="21593000" />
     </task>
     <servers />
   </component>
@@ -1457,7 +1480,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="323815000" />
+    <option name="totallyTimeSpent" value="325840000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1793,17 +1816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/addSubject.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#caption#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1496646286484" expanded="true" signature="1412:1451" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/entryScore.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
@@ -1811,37 +1823,6 @@
           <folding>
             <element signature="n#style#0;n#caption#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <marker date="1496646338419" expanded="true" signature="1412:1451" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/subjectManager.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="243" column="96" lean-forward="false" selection-start-line="243" selection-start-column="96" selection-end-line="243" selection-end-column="96" />
-          <folding>
-            <marker date="1496646656609" expanded="true" signature="1412:1451" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gradeManager.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="251" column="96" lean-forward="false" selection-start-line="251" selection-start-column="96" selection-end-line="251" selection-end-column="96" />
-          <folding>
-            <marker date="1496646669043" expanded="true" signature="1419:1458" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/studentManager.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="211" column="0" lean-forward="true" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
-          <folding>
-            <marker date="1496646688966" expanded="true" signature="1409:1448" ph="..." />
-            <marker date="1496646688966" expanded="true" signature="54772:54881" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1866,14 +1847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/service/impl/StudentServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1487">
-          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1990,19 +1963,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/service/impl/FileUpLoadServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-594">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/repository/ScoreRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-191">
           <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/service/impl/FileUpLoadServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/biz/std/service/impl/StudentServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-648">
+          <caret line="104" column="17" lean-forward="true" selection-start-line="104" selection-start-column="17" selection-end-line="104" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/studentManager.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="613" column="34" lean-forward="true" selection-start-line="613" selection-start-column="34" selection-end-line="613" selection-end-column="34" />
+          <folding>
+            <marker date="1496649296150" expanded="true" signature="1409:1448" ph="..." />
+            <marker date="1496649296150" expanded="true" signature="54828:54937" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gradeManager.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-216">
+          <caret line="268" column="134" lean-forward="false" selection-start-line="268" selection-start-column="134" selection-end-line="268" selection-end-column="134" />
+          <folding>
+            <marker date="1496649415733" expanded="true" signature="1419:1458" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/subjectManager.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-522">
+          <caret line="263" column="108" lean-forward="false" selection-start-line="263" selection-start-column="108" selection-end-line="263" selection-end-column="108" />
+          <folding>
+            <marker date="1496649464799" expanded="true" signature="1412:1451" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/addSubject.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-423">
+          <caret line="217" column="85" lean-forward="true" selection-start-line="217" selection-start-column="85" selection-end-line="217" selection-end-column="85" />
+          <folding>
+            <marker date="1496649652562" expanded="true" signature="1412:1451" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -259,14 +259,14 @@
                                             <td><c:out value="${grade.id}"/></td>
                                             <td><c:out value="${grade.classname}"/></td>
                                             <td class="hidden-480"><c:out value="${grade.students.size()}"/></td>
-                                            <td>${grade.average}</td>
+                                            <td><c:out value="${grade.average}"/></td>
                                             <td class="center">
                                                 <div class="hidden-sm hidden-xs btn-group">
                                                     <a href="#update-grade" role="button" title="修改班级信息"
                                                        onclick="updateGradeInfo('${grade.classname}',${grade.id})"
                                                        class="btn btn-xs btn-info" data-toggle="modal"> <i
                                                             class="ace-icon fa fa-pencil bigger-120"></i></a>
-                                                    <a class="btn btn-xs btn-danger" href="deleteGrade?id=${grade.id}"
+                                                    <a class="btn btn-xs btn-danger" href="deleteGrade?id=<c:out value="${grade.id}"/>"
                                                        title="删除班级信息">
                                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                     </a>

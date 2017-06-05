@@ -214,13 +214,11 @@
                                     </c:if>
                                     <c:forEach items="${subjectsList}" var="subject">
                                         <tr>
-                                            <td>
-                                                <a href="#"><c:out value="${subject.id}"/></a>
-                                            </td>
+                                            <td><c:out value="${subject.id}"/></td>
                                             <td><c:out value="${subject.name}"/></td>
                                             <td class="center">
                                                 <div class="hidden-sm hidden-xs btn-group">
-                                                    <a href="addSubject?subjectId=${subject.id}&subjectName=${subject.name}"
+                                                    <a href="addSubject?subjectId=<c:out value="${subject.id}"/>&subjectName=<c:out value="${subject.name}"/>"
                                                        class="btn btn-xs btn-success"
                                                        title="选修该课">
                                                         <i class="ace-icon fa fa-pencil bigger-120"></i>

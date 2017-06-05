@@ -261,7 +261,7 @@
                                                         <i class="ace-icon fa fa-pencil bigger-120"></i>
                                                     </a>
                                                     <a class="btn btn-xs btn-danger"
-                                                       href="deleteSubject?id=${subject.id}" title="删除学科信息">
+                                                       href="deleteSubject?id=<c:out value="${subject.id}"/>" title="删除学科信息">
                                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                     </a>
                                                 </div>
