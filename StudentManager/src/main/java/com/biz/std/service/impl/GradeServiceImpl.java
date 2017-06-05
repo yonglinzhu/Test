@@ -3,7 +3,6 @@ package com.biz.std.service.impl;
 import com.biz.std.model.*;
 import com.biz.std.repository.GradeRepository;
 import com.biz.std.repository.ScoreRepository;
-import com.biz.std.repository.StudentRepository;
 import com.biz.std.repository.specification.GradePagingFilterSpecification;
 import com.biz.std.service.GradeService;
 import com.biz.std.util.conversion.GradeListTurnGradeVoList;
@@ -16,38 +15,28 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
  * by zale on 2017/5/10.
  */
-@Service("classService")
+@Service
 public class GradeServiceImpl implements GradeService {
     @Autowired
     private GradeRepository gradeRepository;
     @Autowired
-    private StudentRepository studentRepository;//注入StudentRepository
-    @Autowired
     private ScoreRepository scoreRepository;
     @Autowired
     private GradeVoturnGrade gradeVoturnGradeService;
-    @Autowired
-    private BaseStudentNumSerivceImpl baseStudentNumSerivce;
 
     /**
      * 状态码值
      */
     public static final String DELETESTATECODE = "0";// 删除状态码
     public static final String ACTIVESTATECODE = "1";// 正在使用状态码
-
-    /**
-     * 分页值
-     */
-    public static final int ENDPADING = 9;// 分页 END
 
     /**
      * 跳转至班级信息也 并分页显示班级信息
@@ -59,7 +48,7 @@ public class GradeServiceImpl implements GradeService {
         Page<Grade> page = gradeRepository.findAll(new GradePagingFilterSpecification(), pageable);
         List<Grade> gradeList = page.getContent();// 当前页显示的班级
         // 班级平均分处理
-        this.gradeAverageProcessing(gradeList);
+        gradeList = this.gradeAverageProcessing(gradeList);
         // Turn
         List<GradeVo> gradeVoList = new GradeListTurnGradeVoList().apply(gradeList);
 
@@ -67,61 +56,38 @@ public class GradeServiceImpl implements GradeService {
     }
 
     /**
-     * 班级平均分处理方法
+     * 获取所有有效班级信息
      */
-    private List<Grade> gradeAverageProcessing(List<Grade> gradeList) {
-        // 班级平均分处理
-        // 获取班级的所有学生
-        if (gradeList != null && gradeList.size() != 0) {
-            double sumScoreForGrade = 0;// 该班级总分数
-            double sumScoreForStudent = 0;// 学生总分数
-            for (int i = 0; i < gradeList.size(); i++) {
-                List<Student> studentList = studentRepository.findStudentByGrade_id(gradeList.get(i).getId());
-                if (studentList != null && studentList.size() != 0) {
-                    for (Student s : studentList) { // 一个班级
-                        List<Score> scoreList = scoreRepository.findScoreByStudentId(s.getId());
-                        if (scoreList != null && scoreList.size() != 0) {
-                            for (Score score : scoreList) {// 一个学生的总分数
-                                sumScoreForStudent += score.getScore();
-                            }
-                            sumScoreForGrade += sumScoreForStudent;
-                            sumScoreForStudent = 0;//初始化
-                        }
-                    }
-                    sumScoreForGrade = sumScoreForGrade / studentList.size();// 平均分
-                    // 保留两位小数
-                    BigDecimal bg = new BigDecimal(sumScoreForGrade);
-                    gradeList.get(i).setAverage(bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
-                    // 学生人数
-                    gradeList.get(i).setNumber(studentList.size());
-                    sumScoreForGrade = 0;// 初始化
-                } else { // 班级没有学生
-                    gradeList.get(i).setAverage(0);
-                }
-
-            }
-        }// end if
-        return gradeList;
+    @Override
+    public List<GradeVo> findGradeList() {
+        List<Grade> gradeList = gradeRepository.findAll();
+        List<GradeVo> gradeVoList = new GradeListTurnGradeVoList().apply(gradeList);
+        return gradeVoList;
     }
 
     /**
      * 保存班级
      */
     @Override
+    @Transactional
     public void saveGrade(GradeVo gradeVo) {
-
+        // 校验班级名称是否重复
+        Grade gradeExsit = gradeRepository.findByClassnameAndStateNot(gradeVo.getClassname(), GradeServiceImpl.DELETESTATECODE);
+        if (gradeExsit != null) {
+            return;
+        }
         gradeVo.setState(ACTIVESTATECODE);// 初始化班级状态为：正在使用
-        gradeVo.setAverage(0);// 初始化班级平均分为：0
+        gradeVo.setAverage(new BigDecimal("0.000"));
         // Vo转PO
         Grade grade = gradeVoturnGradeService.apply(gradeVo);
         gradeRepository.save(grade);
-        this.initBaseStudentNum(grade.getClassname());
     }
 
     /**
      * 修改班级信息
      */
     @Override
+    @Transactional
     public void updateGrade(GradeVo gradeVo) {
         // Vo转PO
         Grade grade = gradeVoturnGradeService.apply(gradeVo);
@@ -137,6 +103,7 @@ public class GradeServiceImpl implements GradeService {
      * 删除班级
      */
     @Override
+    @Transactional
     public void deleteGradeById(Integer id) {
         // 获取该班级
         Grade gradeTemp = gradeRepository.findOne(id);
@@ -147,31 +114,29 @@ public class GradeServiceImpl implements GradeService {
     }
 
     /**
-     * 初始化班级基础学号
+     * 班级平均分处理方法
      */
-    private void initBaseStudentNum(String gradeName) {
-        // 初始化班级基础学号
-        int baseStudentNum = baseStudentNumSerivce.checkBaseStudentNum();
-        BaseStudentNum baseStudentNumPO = new BaseStudentNum();
-        if (baseStudentNum == 0) {// 初始化班级基础学号
-            baseStudentNum = 2017001;// 初始化基础学号赋值
+    private List<Grade> gradeAverageProcessing(List<Grade> gradeList) {
 
-            baseStudentNumPO.setBaseNum(baseStudentNum + "");
-            baseStudentNumSerivce.saveBasseStudentNum(baseStudentNumPO);
+        if (gradeList != null && gradeList.size() != 0) {
+            for (int i = 0; i < gradeList.size(); i++) {
+                // 获取每个班级的平均分数
+                BigDecimal studentScore = new BigDecimal("0.000");// 单个班级平局分数
+                if (gradeList.get(i).getStudents() != null && gradeList.get(i).getStudents().size() != 0) {
+                    for (int j = 0; j < gradeList.get(i).getStudents().size(); j++) {
+                        List<Score> scoreList = scoreRepository.findByStudentIdAndStateNot(gradeList.get(i).getStudents().get(j).getId(), GradeServiceImpl.DELETESTATECODE);
+                        if (scoreList != null && scoreList.size() != 0) {// 判断该学生是否有选修课程
+                            BigDecimal tempScore = scoreRepository.calculateScoreByStudentId(gradeList.get(i).getStudents().get(j).getId(), GradeServiceImpl.ACTIVESTATECODE);
+                            studentScore = studentScore.add(tempScore);
+                        }
+                    }
+                    // 计算平局分
+                    studentScore = studentScore.divide(new BigDecimal(gradeList.get(i).getStudents().size()), 3, BigDecimal.ROUND_HALF_UP);
+                }
+                //
+                gradeList.get(i).setAverage(studentScore);
+            }
         }
-        // 获取上一个班级的基础学号
-        baseStudentNumPO = baseStudentNumSerivce.findBaseStudentNumBylastDate();
-        // 基础学号增一
-        baseStudentNum = Integer.parseInt(baseStudentNumPO.getBaseNum()) + 1;
-        // 获取班级ID
-        int gradeID = gradeRepository.findGradeIDByGradeName(gradeName);
-        // 赋值
-        baseStudentNumPO.setGradeId(gradeID);
-        baseStudentNumPO.setBaseNum(baseStudentNum + "");
-        baseStudentNumPO.setId(0);
-        baseStudentNumPO.setIdentification("1001");
-        // 更新数据库
-        baseStudentNumSerivce.saveBasseStudentNum(baseStudentNumPO);
+        return gradeList;
     }
-
 }

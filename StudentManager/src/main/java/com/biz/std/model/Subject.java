@@ -1,12 +1,11 @@
 package com.biz.std.model;
 
 
-import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * 学科Model
@@ -15,29 +14,24 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tb_subject")
-@Component
-public class Subject {
+public class Subject implements Serializable{
     @Id
     @GeneratedValue
     private Integer id;
 
+    @Column(length = 50)
     private String name;// 学科名称
 
-    private int number;// 选修人数
+    private Integer number;// 选修人数
 
-    private double average;// 平均分
+    private BigDecimal average;// 平均分
 
+    @Column(length = 10)
     private String state;// 状态
 
     @Override
     public String toString() {
-        return "Subject{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", number=" + number +
-                ", average=" + average +
-                ", state='" + state + '\'' +
-                '}';
+        return ToStringBuilder.reflectionToString(this);
     }
 
     public Integer getId() {
@@ -56,19 +50,19 @@ public class Subject {
         this.name = name;
     }
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
-    public double getAverage() {
+    public BigDecimal getAverage() {
         return average;
     }
 
-    public void setAverage(double average) {
+    public void setAverage(BigDecimal average) {
         this.average = average;
     }
 

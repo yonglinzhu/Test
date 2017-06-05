@@ -1,5 +1,6 @@
 package com.biz.std.controller;
 
+import com.biz.std.service.GradeService;
 import com.biz.std.service.StudentService;
 import com.biz.std.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,9 @@ import java.util.List;
 public class StudentManagerController {
 
     @Autowired
-    private StudentService studentService;// 注入StudentService
+    private StudentService studentService;
+    @Autowired
+    private GradeService gradeService;
 
     /**
      * 转到学生信息管理页
@@ -33,7 +36,7 @@ public class StudentManagerController {
         // 获取学生信息
         PageResult<StudentVo> pageResult = studentService.goStudentManager(pageVo);
         // 获取班级信息
-        List<GradeVo> gradeVoList = studentService.findGradeList();
+        List<GradeVo> gradeVoList = gradeService.findGradeList();
         return new ModelAndView("studentManager").addObject("pageResult", pageResult)
                 .addObject("student_grade", gradeVoList);
     }
@@ -64,59 +67,4 @@ public class StudentManagerController {
         studentService.deleteStudent(studentVo);
         return "redirect:/goStudentManager";
     }
-
-    /**
-     * 跳转至选课页
-     */
-    @RequestMapping("/goAddSubject")
-    public ModelAndView goAddSubject(@ModelAttribute StudentVo studentVo) {
-        System.out.println("controller:"+studentVo);
-        List<SubjectVo> subjectVoList = studentService.goAddSubject(studentVo);
-        return new ModelAndView("addSubject").addObject("subjectsList", subjectVoList);
-    }
-
-    /**
-     * 选修该课程
-     */
-    @RequestMapping("/addSubject")
-    public String addSubject(@ModelAttribute ScoreVo scoreVo) {
-        studentService.addSubject(scoreVo);
-        return "redirect:/goAddSubject";
-    }
-
-    /**
-     * 跳转至分数录入页
-     */
-    @RequestMapping("/goEntryScore")
-    public ModelAndView goEntryScore(@ModelAttribute StudentVo studentVo) {
-        List<ScoreVo> scoreVoList = studentService.goEntryScore(studentVo);
-        return new ModelAndView("entryScore").addObject("scoreList", scoreVoList);
-    }
-
-    /**
-     * 分数录入
-     */
-    @RequestMapping("/entryScore")
-    public String entryScore(@ModelAttribute ScoreVo scoreVo) {
-        studentService.entryScore(scoreVo);
-        return "redirect:/goEntryScore";
-    }
-
-    /**
-     * 图片上传
-     */
-    @RequestMapping("/uploadPicture")
-    public String uploadPicture(StudentVo studentVo, HttpServletRequest request) throws IOException {
-        studentService.uploadPicture(studentVo, request);
-        return "redirect:/goStudentManager";
-    }
-
-    /**
-     * 图片显示
-     */
-    @RequestMapping("/pictureView")
-    public void pictureView(StudentVo studentVo, HttpServletResponse response) throws IOException {
-        studentService.pictureView(studentVo, response);
-    }
-
 }

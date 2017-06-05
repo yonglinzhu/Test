@@ -237,12 +237,6 @@
                                 <table id="simple-table" class="table  table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="center">
-                                            <label class="pos-rel">
-                                                <input type="checkbox" class="ace"/>
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </th>
                                         <th>序号</th>
                                         <th>班级名</th>
                                         <th class="hidden-480">人数</th>
@@ -252,17 +246,19 @@
                                     </thead>
 
                                     <tbody>
+                                    <%--没有数据 - 提示信息--%>
+                                    <c:if test="${pageResult.result == null || pageResult.result.size() ==0}">
+                                        <tr>
+                                            <td style="color: red;text-align: center" colspan="5">
+                                                暂无任何班级信息，请添加！
+                                            </td>
+                                        </tr>
+                                    </c:if>
                                     <c:forEach items="${pageResult.result}" var="grade">
                                         <tr>
-                                            <td class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace"/>
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </td>
-                                            <td>${grade.id}</td>
-                                            <td>${grade.classname}</td>
-                                            <td class="hidden-480">${grade.number}</td>
+                                            <td><c:out value="${grade.id}"/></td>
+                                            <td><c:out value="${grade.classname}"/></td>
+                                            <td class="hidden-480"><c:out value="${grade.students.size()}"/></td>
                                             <td>${grade.average}</td>
                                             <td class="center">
                                                 <div class="hidden-sm hidden-xs btn-group">

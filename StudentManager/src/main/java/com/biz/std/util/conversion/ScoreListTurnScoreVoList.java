@@ -1,9 +1,7 @@
 package com.biz.std.util.conversion;
 
 import com.biz.std.model.Score;
-import com.biz.std.model.Subject;
 import com.biz.std.vo.ScoreVo;
-import com.biz.std.vo.SubjectVo;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
@@ -18,10 +16,9 @@ import java.util.List;
 @Service
 public class ScoreListTurnScoreVoList implements Function<List<Score>, List<ScoreVo>> {
 
-    private List<ScoreVo> scoreVoList = Lists.newArrayList();
-
     @Override
     public List<ScoreVo> apply(List<Score> scores) {
+        List<ScoreVo> scoreVoList = Lists.newArrayList();
         ScoreVo scoreVo;
         for (Score score : scores) {
             scoreVo = new ScoreVo();

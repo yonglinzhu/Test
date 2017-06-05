@@ -1,6 +1,7 @@
 package com.biz.std.vo;
 
-import java.io.Serializable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.util.List;
 
 /**
@@ -55,5 +56,10 @@ public class PageResult<E> {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

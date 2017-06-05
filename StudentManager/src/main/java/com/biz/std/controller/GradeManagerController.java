@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
 /**
- * 班级信息管理controller层
- * <p>
+ * 班级信息管理controller
+ * -
  * by zale on 2017/5/10.
  */
 @Controller

@@ -14,7 +14,8 @@ import java.util.List;
 @Repository
 public interface GradeRepository extends JpaRepository<Grade, Integer>,
         JpaSpecificationExecutor<Grade> {
-    // 通过班级名称查询班级ID
-    @Query(value = "SELECT id FROM tb_grade WHERE classname = ?1 AND state != '0'", nativeQuery = true)
-    int findGradeIDByGradeName(String name);
+
+    // 通过班级名称查询班级
+    Grade findByClassnameAndStateNot(String classname,String state);
+
 }

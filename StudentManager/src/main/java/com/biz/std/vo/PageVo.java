@@ -1,5 +1,7 @@
 package com.biz.std.vo;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * Description:
  * -
@@ -34,5 +36,10 @@ public class PageVo {
 
     public void setPageIndex(int pageIndex) {
         this.pageIndex = pageIndex;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

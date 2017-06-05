@@ -1,14 +1,14 @@
 package com.biz.std.controller;
 
 import com.biz.std.service.SubjectService;
-import com.biz.std.vo.PageResult;
-import com.biz.std.vo.PageVo;
-import com.biz.std.vo.SubjectVo;
+import com.biz.std.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * 学科信息管理controller层
@@ -57,5 +57,24 @@ public class SubjectManagerController {
         subjectService.deleteSubject(subjectVo);
         return "redirect:/goSubjectManager";
     }
+
+    /**
+     * 跳转至选课页
+     */
+    @RequestMapping("/goAddSubject")
+    public ModelAndView goAddSubject(@ModelAttribute StudentVo studentVo) {
+        List<SubjectVo> subjectVoList = subjectService.goAddSubject(studentVo);
+        return new ModelAndView("addSubject").addObject("subjectsList", subjectVoList);
+    }
+
+    /**
+     * 选修该课程
+     */
+    @RequestMapping("/addSubject")
+    public String addSubject(@ModelAttribute ScoreVo scoreVo) {
+        subjectService.addSubject(scoreVo);
+        return "redirect:/goAddSubject";
+    }
+
 
 }

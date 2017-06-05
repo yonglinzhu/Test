@@ -3,48 +3,47 @@ package com.biz.std.service.impl;
 import com.biz.std.model.*;
 import com.biz.std.repository.*;
 import com.biz.std.repository.specification.StudentPagingFilterSpecification;
+import com.biz.std.service.ScoreSerivce;
 import com.biz.std.service.StudentService;
+import com.biz.std.service.impl.GradeServiceImpl;
 import com.biz.std.util.conversion.*;
 import com.biz.std.vo.*;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import sun.rmi.runtime.Log;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 /**
  * by zale on 2017/5/8.
  */
-@Service("studentService")
+@Service
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    private StudentRepository studentRepository;//注入StudentRepository
+    private StudentRepository studentRepository;
     @Autowired
-    private GradeRepository gradeRepository;//注入GradeRepository
-    @Autowired
-    private BaseStudentNumRepository baseStudentNumRepository;//注入BaseStudentNumRepository
-    @Autowired
-    private SubjectRepository subjectRepository;//注入SubjectRepository
-    @Autowired
-    private ScoreRepository scoreRepository;//注入ScoreRepository
+    private ScoreRepository scoreRepository;
     @Autowired
     private StudentVoturnStudent studentVoturnStudentService;
     @Autowired
-    private ScoreVoTurnScore scoreVoTurnScoreService;
-    @Autowired
-    private HttpSession session;
+    private ScoreSerivce scoreSerivce;
 
     /**
      * 跳转至学生信息页 并分页显示学生信息
@@ -60,29 +59,29 @@ public class StudentServiceImpl implements StudentService {
         studentList = studentAverageProcessing(studentList);
         // Turn
         List<StudentVo> studentVoList = new StudentListTurnStudentVoList().apply(studentList);
+
         // 前台传值
         return new PageResult<StudentVo>(pageVo.getPageIndex(), studentVoList.size(), studentVoList, page.getTotalPages());
-    }
-
-    /**
-     * 获取所有有效班级信息
-     */
-    @Override
-    public List<GradeVo> findGradeList() {
-        List<Grade> gradeList = gradeRepository.findAll();
-        List<GradeVo> gradeVoList = new GradeListTurnGradeVoList().apply(gradeList);
-        return gradeVoList;
     }
 
     /**
      * 保存学生信息
      */
     @Override
+    @Transactional
     public void saveStudent(StudentVo studentVo) {
-
+        // 判断是否已选择班级
+        if (studentVo.getGrade().getId() ==0){
+            return;
+        }
         studentVo.setState(GradeServiceImpl.ACTIVESTATECODE);
         // 初始化学号
-        studentVo = this.initStudentnumber(studentVo);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        String number = sdf.format(date);
+        studentVo.setNumber(number);
+        // 初始化平均分
+        studentVo.setAverage(new BigDecimal("0.000"));
         // Vo转PO
         Student student = studentVoturnStudentService.apply(studentVo);
         studentRepository.save(student);
@@ -93,168 +92,44 @@ public class StudentServiceImpl implements StudentService {
      * 修改学生信息
      */
     @Override
+    @Transactional
     public void updateStudent(StudentVo studentVo) {
-        this.updateOrDeleteSubject(studentVo, "update");
+        // 判断是否已选择班级
+        if (studentVo.getGrade().getId() ==0){
+            return;
+        }
+        // Vo转PO
+        Student student = studentVoturnStudentService.apply(studentVo);
+        // 通过学生ID获取该学生信息
+        Student studentTemp = studentRepository.findOne(student.getId());
+        // 修改学生信息
+        studentTemp.setName(student.getName());
+        studentTemp.setSex(student.getSex());
+        studentTemp.setBirthday(student.getBirthday());
+        studentTemp.setGrade(student.getGrade());
+        // 更新数据库
+        studentRepository.save(studentTemp);
     }
 
     /**
      * 删除该学生
      */
     @Override
+    @Transactional
     public void deleteStudent(StudentVo studentVo) {
-        this.updateOrDeleteSubject(studentVo, "delete");
-    }
-
-    /**
-     * 处理修改与删除学生
-     */
-    private void updateOrDeleteSubject(StudentVo studentVo, String flag) {
         // Vo转PO
         Student student = studentVoturnStudentService.apply(studentVo);
         // 通过学生ID获取该学生信息
         Student studentTemp = studentRepository.findOne(student.getId());
-        if ("update".equals(flag)) {// update
-            // 修改学生名称信息
-            studentTemp.setName(student.getName());
-            studentTemp.setSex(student.getSex());
-            studentTemp.setBirthday(student.getBirthday());
-            studentTemp.setGrade_id(student.getGrade_id());
-        } else if ("delete".equals(flag)) {// delete
-            // 修改学生状态信息
-            studentTemp.setState(GradeServiceImpl.DELETESTATECODE);
-        }
+        // 修改学生状态信息
+        studentTemp.setState(GradeServiceImpl.DELETESTATECODE);
+        // 删除中间表Score相应记录
+        UpdateScoreVo updateScoreVo = new UpdateScoreVo();
+        updateScoreVo.setId(studentTemp.getId());
+        updateScoreVo.setType("deletStudent");
+        scoreSerivce.deleteScore(updateScoreVo);
         // 更新数据库
         studentRepository.save(studentTemp);
-    }
-
-    /**
-     * 处理学生学号
-     */
-    private StudentVo initStudentnumber(StudentVo studentVo) {
-        // 获取班级基础学号
-        BaseStudentNum baseStudentNum = baseStudentNumRepository.findBaseStudentNumByGradeId(studentVo.getGrade_id());
-        int identification = Integer.parseInt(baseStudentNum.getIdentification()) + 1;
-        String baseNum = baseStudentNum.getBaseNum();
-        studentVo.setNumber(baseNum + identification);// 初始化学生学号
-        // baseStudentNum 更新
-        baseStudentNum.setIdentification(identification + "");
-        baseStudentNumRepository.save(baseStudentNum);
-
-        return studentVo;
-    }
-
-    /**
-     * 跳转至选课页
-     */
-    @Override
-    public List<SubjectVo> goAddSubject(StudentVo studentVo) {
-        if (session.getAttribute("studentId_goAddSubject") != null && studentVo.getId() == null) {
-            return this.getSubject((Integer) session.getAttribute("studentId_goAddSubject"));
-        } else {
-            /**
-             *  存储学生ID
-             *
-             *  1、选修课程操作-用
-             *  2、重定向-用（处理NullPointerException）
-             */
-            session.putValue("studentId_goAddSubject", studentVo.getId());
-        }
-        return this.getSubject(studentVo.getId());
-
-    }
-
-    /**
-     * 获取学生未选课程
-     */
-    private List<SubjectVo> getSubject(int id) {
-        List<Score> scoreList = scoreRepository.findScoreByStudentId(id);// 获取已选的学科ID
-        List<Subject> subjectsList = subjectRepository.getAllSubjects();// 获取系统所有学科
-        // 去掉已选择的课程
-        for (Score score : scoreList) {
-            for (int i = 0; i < subjectsList.size(); i++) {
-                if (score.getSubjectId() == subjectsList.get(i).getId()) {
-                    subjectsList.remove(i);
-                    break;
-                }
-            }
-        }
-        List<SubjectVo> subjectVoList = new SubjectListTurnSubjectVoList().apply(subjectsList);
-        return subjectVoList;
-    }
-
-    /**
-     * 增加选修课程
-     */
-    @Override
-    public void addSubject(ScoreVo scoreVo) {
-        scoreVo.setState(GradeServiceImpl.ACTIVESTATECODE);
-        int sutdentId = (Integer) session.getAttribute("studentId_goAddSubject");
-        scoreVo.setStudentId(sutdentId);
-        scoreVo.setScore(0);
-        // Vo 转 PO
-        Score score = scoreVoTurnScoreService.apply(scoreVo);
-        // 数据库更新
-        scoreRepository.save(score);
-        // 更新学生选课数
-        List<Score> scoreList = scoreRepository.findScoreByStudentId(sutdentId);
-        Student student = studentRepository.findOne(sutdentId);
-        student.setSub_num(scoreList.size());
-        studentRepository.save(student);
-    }
-
-    /**
-     * 跳转至分数录入页
-     */
-    @Override
-    public List<ScoreVo> goEntryScore(StudentVo studentVo) {
-        if (session.getAttribute("studentId_EntryScore") != null && studentVo.getId() == null) {
-            return this.entryScoreView((Integer) session.getAttribute("studentId_EntryScore"));
-        } else {
-            /**
-             *  存储学生ID
-             *
-             *  1、重定向-用（处理NullPointerException）
-             */
-            session.putValue("studentId_EntryScore", studentVo.getId());
-        }
-        return this.entryScoreView(studentVo.getId());
-    }
-
-    private List<ScoreVo> entryScoreView(int id) {
-        // 获取该学生已选的课程
-        List<Score> scoreList = scoreRepository.findScoreByStudentId(id);
-        List<ScoreVo> scoreVoList = new ScoreListTurnScoreVoList().apply(scoreList);
-        return scoreVoList;
-    }
-
-    /**
-     * 分数录入
-     */
-    @Override
-    public void entryScore(ScoreVo scoreVo) {
-        // Vo 转 PO
-        Score score = scoreVoTurnScoreService.apply(scoreVo);
-        // 根据ID查询其所有分数的信息
-        Score scoreTemp = scoreRepository.findScoreById(score.getId());
-        // 处理并更新数据
-        scoreTemp.setScore(handleScore(score.getScore()));
-        // 数据库更新
-        scoreRepository.save(scoreTemp);
-
-    }
-
-    /**
-     * 处理录入的分数
-     * <p>
-     * 只是简单处理一下分数范围
-     */
-    private double handleScore(double score) {
-        if (score > 150) {
-            score = 150;
-        } else if (score < 0) {
-            score = 0;
-        }
-        return score;
     }
 
     /**
@@ -262,95 +137,17 @@ public class StudentServiceImpl implements StudentService {
      */
     private List<Student> studentAverageProcessing(List<Student> studentList) {
         // 学生平均分处理
-        // 获取学生选择的所有学科
         if (studentList != null && studentList.size() != 0) {
             for (int i = 0; i < studentList.size(); i++) {
-                List<Score> scoreList = scoreRepository.findScoreByStudentId(studentList.get(i).getId());
-                double sumScore = 0;// 总分数
-                if (scoreList.size() != 0 && scoreList != null) {
-                    for (Score s : scoreList) {
-                        sumScore += s.getScore();
-                    }
-                    double averageScore = sumScore / scoreList.size();// 平均分
-                    // 保留两位小数
-                    BigDecimal bg = new BigDecimal(averageScore);
-                    studentList.get(i).setAverage(bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+                BigDecimal average = scoreRepository.calculateAverageByStudentId(studentList.get(i).getId(), GradeServiceImpl.ACTIVESTATECODE);
+                if (average == null) {
+                    studentList.get(i).setAverage(new BigDecimal("0.000"));
                 } else {
-                    studentList.get(i).setAverage(0);
+                    studentList.get(i).setAverage(average);
                 }
             }
-        } else {// end if
-
         }
         return studentList;
-    }
-
-    /**
-     * 图片上传
-     */
-    @Override
-    public void uploadPicture(StudentVo studentVo, HttpServletRequest request) throws IOException {
-
-        // 获取支持文件上传的Request对象 MultipartHttpServletRequest
-        MultipartHttpServletRequest mtpreq = (MultipartHttpServletRequest) request;
-        // 通过 mtpreq 获取文件域中的文件
-        MultipartFile file = mtpreq.getFile("file");
-        // 通过MultipartFile 对象获取文件的原文件名
-        String fileName = file.getOriginalFilename();
-        if (fileName != null && !"".equals(fileName)) {
-            // 生成一个uuid 的文件名
-            UUID randomUUID = UUID.randomUUID();
-            // 获取文件的后缀名
-            int i = fileName.lastIndexOf(".");
-            String uuidName = randomUUID.toString() + fileName.substring(i);
-
-            //获取服务器的路径地址（被上传文件的保存地址）
-            String realPath = request.getSession().getServletContext().getRealPath("/file");
-            //将路径转化为文件夹 并 判断文件夹是否存在
-            File dir = new File(realPath);
-            if (!dir.exists()) {
-                dir.mkdir();
-            }
-            //获取一个文件的保存路径
-            String path = realPath + "/" + uuidName;
-            // 数据库更新
-            Student student = studentRepository.findOne(studentVo.getId());
-            student.setPicture(path);
-            studentRepository.save(student);
-            try {
-                file.transferTo(new File(path));
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * 图片显示
-     */
-    @Override
-    public void pictureView(StudentVo studentVo, HttpServletResponse response) throws IOException {
-        // 通过学生ID获取头像地址
-        Student student = studentRepository.findOne(studentVo.getId());
-        String path = student.getPicture();
-        if (!"--".equals(path)) {
-            //读取本地图片输入流
-            FileInputStream inputStream = new FileInputStream(path);
-            int i = inputStream.available();
-            //byte数组用于存放图片字节数据
-            byte[] buff = new byte[i];
-            inputStream.read(buff);
-            //记得关闭输入流
-            inputStream.close();
-            //设置发送到客户端的响应内容类型
-            response.setContentType("image/*");
-            OutputStream out = response.getOutputStream();
-            out.write(buff);
-            //关闭响应输出流
-            out.close();
-        }
     }
 
 }

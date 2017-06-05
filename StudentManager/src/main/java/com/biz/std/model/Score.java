@@ -1,41 +1,39 @@
 package com.biz.std.model;
 
 
-import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * 学生信息管理 - 分数录入 - 分数Model
- *
+ * <p>
  * by zale on 2017/5/16.
  */
 @Entity
 @Table(name = "tb_score")
-@Component
-public class Score {
+public class Score implements Serializable {
     @Id
     @GeneratedValue
     private Integer id;
 
-    private int studentId;// 学生ID
-    private int subjectId;// 学科ID
-    private double score;// 分数
+    private Integer studentId;// 学生ID
+
+    private Integer subjectId;// 学科ID
+
+    private BigDecimal score;// 分数
+
+    @Column(length = 10)
     private String state;// 状态
+
+    @Column(length = 50)
     private String subjectName;// 学科名称
 
     @Override
     public String toString() {
-        return "Score{" +
-                "id=" + id +
-                ", studentId=" + studentId +
-                ", subjectId=" + subjectId +
-                ", score=" + score +
-                ", state='" + state + '\'' +
-                '}';
+        return ToStringBuilder.reflectionToString(this);
     }
 
     public Integer getId() {
@@ -46,28 +44,28 @@ public class Score {
         this.id = id;
     }
 
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-
-    public int getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(int subjectId) {
-        this.subjectId = subjectId;
-    }
-
-    public double getScore() {
+    public BigDecimal getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(BigDecimal score) {
         this.score = score;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public Integer getSubjectId() {
+        return subjectId;
     }
 
     public String getState() {

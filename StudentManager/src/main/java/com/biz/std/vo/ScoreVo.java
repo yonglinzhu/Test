@@ -1,32 +1,26 @@
 package com.biz.std.vo;
 
 
-import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.math.BigDecimal;
 
 /**
  * by zale on 2017/5/16.
  */
-
-@Component
 public class ScoreVo {
 
     private Integer id;
 
-    private int studentId;// 学生ID
-    private int subjectId;// 学科ID
-    private double score;// 分数
+    private Integer studentId;// 学生ID
+    private Integer subjectId;// 学科ID
+    private BigDecimal score;// 分数
     private String state;// 状态
     private String subjectName;// 学科名称
 
     @Override
     public String toString() {
-        return "ScoreVo{" +
-                "id=" + id +
-                ", studentId=" + studentId +
-                ", subjectId=" + subjectId +
-                ", score=" + score +
-                ", state='" + state + '\'' +
-                '}';
+        return ToStringBuilder.reflectionToString(this);
     }
 
     public Integer getId() {
@@ -37,27 +31,27 @@ public class ScoreVo {
         this.id = id;
     }
 
-    public int getStudentId() {
+    public Integer getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(Integer studentId) {
         this.studentId = studentId;
     }
 
-    public int getSubjectId() {
+    public Integer getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(Integer subjectId) {
         this.subjectId = subjectId;
     }
 
-    public double getScore() {
+    public BigDecimal getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(BigDecimal score) {
         this.score = score;
     }
 

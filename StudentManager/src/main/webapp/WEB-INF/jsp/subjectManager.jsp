@@ -229,12 +229,6 @@
                                 <table id="simple-table" class="table  table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="center">
-                                            <label class="pos-rel">
-                                                <input type="checkbox" class="ace"/>
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </th>
                                         <th>序号</th>
                                         <th>学科名</th>
                                         <th class="hidden-480">选修人数</th>
@@ -244,18 +238,20 @@
                                     </thead>
 
                                     <tbody>
+                                    <%--没有数据 - 提示信息--%>
+                                    <c:if test="${pageResult.result == null || pageResult.result.size() ==0}">
+                                        <tr>
+                                            <td style="color: red;text-align: center" colspan="5">
+                                                暂无任何学科信息，请添加！
+                                            </td>
+                                        </tr>
+                                    </c:if>
                                     <c:forEach items="${pageResult.result}" var="subject">
                                         <tr>
-                                            <td class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace"/>
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </td>
-                                            <td>${subject.id}</td>
-                                            <td>${subject.name}</td>
-                                            <td class="hidden-480">${subject.number}</td>
-                                            <td>${subject.average}</td>
+                                            <td><c:out value="${subject.id}"/></td>
+                                            <td><c:out value="${subject.name}"/></td>
+                                            <td class="hidden-480"><c:out value="${subject.number}"/></td>
+                                            <td><c:out value="${subject.average}"/></td>
                                             <td class="center">
                                                 <div class="hidden-sm hidden-xs btn-group">
                                                     <a href="#update-subject" data-toggle="modal"

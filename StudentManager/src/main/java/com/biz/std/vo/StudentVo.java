@@ -1,10 +1,16 @@
 package com.biz.std.vo;
 
-import org.springframework.stereotype.Component;
+import com.biz.std.model.Grade;
+import com.biz.std.model.Subject;
+import com.biz.std.model.common.Sex;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.math.BigDecimal;
+import java.util.List;
+
 /**
  * by zale on 2017/5/8.
  */
-@Component
 public class StudentVo {
     private Integer id;
 
@@ -12,7 +18,7 @@ public class StudentVo {
     private String name;
 
     // 性别
-    private String sex;
+    private Sex sex;
 
     // 出生日期
     private String birthday;
@@ -24,29 +30,20 @@ public class StudentVo {
     private String number;
 
     // 所在班级ID
-    private Integer grade_id;
+    private Grade grade;
 
-    // 所选学科总数
-    private int sub_num;
+    // 所选学科
+    private List<Subject> subjects;
 
     // 状态
     private String state;
 
     // 平均分
-    private double average;
+    private BigDecimal average;
 
     @Override
     public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", birthday='" + birthday + '\'' +
-                ", picture='" + picture + '\'' +
-                ", number='" + number + '\'' +
-                ", grade_id=" + grade_id +
-                ", sub_num=" + sub_num +
-                '}';
+        return ToStringBuilder.reflectionToString(this);
     }
 
     public Integer getId() {
@@ -65,11 +62,11 @@ public class StudentVo {
         this.name = name;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 
@@ -97,20 +94,20 @@ public class StudentVo {
         this.number = number;
     }
 
-    public Integer getGrade_id() {
-        return grade_id;
+    public Grade getGrade() {
+        return grade;
     }
 
-    public void setGrade_id(Integer grade_id) {
-        this.grade_id = grade_id;
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
 
-    public int getSub_num() {
-        return sub_num;
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 
-    public void setSub_num(int sub_num) {
-        this.sub_num = sub_num;
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
     public String getState() {
@@ -121,11 +118,11 @@ public class StudentVo {
         this.state = state;
     }
 
-    public double getAverage() {
+    public BigDecimal getAverage() {
         return average;
     }
 
-    public void setAverage(double average) {
+    public void setAverage(BigDecimal average) {
         this.average = average;
     }
 }

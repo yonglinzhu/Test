@@ -1,32 +1,27 @@
 package com.biz.std.vo;
 
 
-import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.math.BigDecimal;
 
 /**
  * by zale on 2017/5/16.
  */
-@Component
 public class SubjectVo {
     private Integer id;
 
     private String name;// 学科名称
 
-    private int number;// 选修人数
+    private Integer number;// 选修人数
 
-    private double average;// 平均分
+    private BigDecimal average;// 平均分
 
     private String state;// 状态
 
     @Override
     public String toString() {
-        return "SubjectVo{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", number=" + number +
-                ", average=" + average +
-                ", state='" + state + '\'' +
-                '}';
+        return ToStringBuilder.reflectionToString(this);
     }
 
     public Integer getId() {
@@ -45,19 +40,19 @@ public class SubjectVo {
         this.name = name;
     }
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
-    public double getAverage() {
+    public BigDecimal getAverage() {
         return average;
     }
 
-    public void setAverage(double average) {
+    public void setAverage(BigDecimal average) {
         this.average = average;
     }
 

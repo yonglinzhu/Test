@@ -3,6 +3,21 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+    <!-- 懒加载处理 -->
+    <filter>
+        <filter-name>manageOemInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+        </filter-class>
+        <init-param>
+            <param-name>entityManagerFactoryBeanName</param-name>
+            <param-value>entityManagerFactory</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>manageOemInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <!--Spring 配置文件-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -50,4 +65,5 @@
             org.springframework.web.context.request.RequestContextListener
         </listener-class>
     </listener>
+
 </web-app>

@@ -3,7 +3,6 @@ package com.biz.std.util.conversion;
 import com.biz.std.model.Grade;
 import com.biz.std.vo.GradeVo;
 import com.google.common.base.Function;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,14 +12,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GradeVoturnGrade implements Function<GradeVo,Grade>{
-    @Autowired
-    private Grade grade;
 
     @Override
     public Grade apply(GradeVo gradeVo) {
+        Grade grade = new Grade();
         grade.setId(gradeVo.getId());
         grade.setClassname(gradeVo.getClassname());
-        grade.setNumber(gradeVo.getNumber());
+        grade.setStudents(gradeVo.getStudents());
         grade.setAverage(gradeVo.getAverage());
         grade.setState(gradeVo.getState());
         return grade;

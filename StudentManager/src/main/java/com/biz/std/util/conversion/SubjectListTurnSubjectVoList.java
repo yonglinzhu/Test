@@ -1,8 +1,6 @@
 package com.biz.std.util.conversion;
 
-import com.biz.std.model.Student;
 import com.biz.std.model.Subject;
-import com.biz.std.vo.StudentVo;
 import com.biz.std.vo.SubjectVo;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
@@ -18,10 +16,9 @@ import java.util.List;
 @Service
 public class SubjectListTurnSubjectVoList implements Function<List<Subject>, List<SubjectVo>> {
 
-    private List<SubjectVo> subjectVoList = Lists.newArrayList();
-
     @Override
     public List<SubjectVo> apply(List<Subject> subjects) {
+        List<SubjectVo> subjectVoList = Lists.newArrayList();
         SubjectVo subjectVo;
         for (Subject subject : subjects) {
             subjectVo = new SubjectVo();

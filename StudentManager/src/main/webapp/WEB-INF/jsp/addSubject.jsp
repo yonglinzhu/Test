@@ -193,22 +193,31 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <table id="simple-table" class="table  table-bordered table-hover">
+                                    <caption style="text-align: center">选修课程 - 尚未选修课程</caption>
                                     <thead>
                                     <tr>
                                         <th>序号</th>
                                         <th>学科名</th>
 
-                                        <th class="center">操作</th>
+                                        <th class="center">选修该课程</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
+                                    <%--没有数据 - 提示信息--%>
+                                    <c:if test="${subjectsList == null || subjectsList.size() ==0}">
+                                        <tr>
+                                            <td style="color: red;text-align: center" colspan="3">
+                                                抱歉！您暂无可选修课程！
+                                            </td>
+                                        </tr>
+                                    </c:if>
                                     <c:forEach items="${subjectsList}" var="subject">
                                         <tr>
                                             <td>
-                                                <a href="#">${subject.id}</a>
+                                                <a href="#"><c:out value="${subject.id}"/></a>
                                             </td>
-                                            <td>${subject.name}</td>
+                                            <td><c:out value="${subject.name}"/></td>
                                             <td class="center">
                                                 <div class="hidden-sm hidden-xs btn-group">
                                                     <a href="addSubject?subjectId=${subject.id}&subjectName=${subject.name}"

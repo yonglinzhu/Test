@@ -1,11 +1,12 @@
 package com.biz.std.model;
 
-import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 班级Model
@@ -14,29 +15,30 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tb_grade")
-@Component
-public class Grade {
+public class Grade implements Serializable {
     @Id
     @GeneratedValue
     private Integer id;
 
     // 班级名
+    @Column(length = 20)
     private String classname;
-    // 人数
-    private int number;
+
+    // 学生
+    @OneToMany(mappedBy = "grade",cascade = CascadeType.ALL)
+    @Where(clause = "state=1")
+    private List<Student> students;
+
     // 平均分
-    private double average;
+    private BigDecimal average;
+
     // 状态
+    @Column(length = 10)
     private String state;
 
     @Override
     public String toString() {
-        return "Grade{" +
-                "id=" + id +
-                ", classname='" + classname + '\'' +
-                ", number=" + number +
-                ", average='" + average + '\'' +
-                '}';
+        return ToStringBuilder.reflectionToString(this);
     }
 
     public Integer getId() {
@@ -55,19 +57,19 @@ public class Grade {
         this.classname = classname;
     }
 
-    public int getNumber() {
-        return number;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
-    public double getAverage() {
+    public BigDecimal getAverage() {
         return average;
     }
 
-    public void setAverage(double average) {
+    public void setAverage(BigDecimal average) {
         this.average = average;
     }
 

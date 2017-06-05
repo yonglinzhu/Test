@@ -3,7 +3,6 @@ package com.biz.std.util.conversion;
 import com.biz.std.model.Score;
 import com.biz.std.vo.ScoreVo;
 import com.google.common.base.Function;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,11 +13,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class ScoreVoTurnScore implements Function<ScoreVo, Score> {
 
-    @Autowired
-    private Score score;
-
     @Override
     public Score apply(ScoreVo scoreVo) {
+        Score score = new Score();
         score.setId(scoreVo.getId());
         score.setScore(scoreVo.getScore());
         score.setStudentId(scoreVo.getStudentId());

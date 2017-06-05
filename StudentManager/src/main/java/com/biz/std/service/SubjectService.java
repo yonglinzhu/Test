@@ -1,9 +1,8 @@
 package com.biz.std.service;
 
-import com.biz.std.model.Subject;
-import com.biz.std.vo.PageResult;
-import com.biz.std.vo.PageVo;
-import com.biz.std.vo.SubjectVo;
+import com.biz.std.vo.*;
+
+import java.util.List;
 
 /**
  * 学科service接口
@@ -19,4 +18,9 @@ public interface SubjectService {
     void updateSubject(SubjectVo subjectVo);// 修改学科信息
 
     void deleteSubject(SubjectVo subjectVo);// 删除学科
+
+    List<SubjectVo> goAddSubject(StudentVo studentVo);// 跳转至选课页面
+
+    void addSubject(ScoreVo scoreVo);// 选修该课程
+
 }

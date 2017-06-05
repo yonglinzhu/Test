@@ -193,23 +193,32 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <table id="simple-table" class="table  table-bordered table-hover">
+                                    <caption style="text-align: center">录入分数 - 已选修课程</caption>
                                     <thead>
                                     <tr>
                                         <th>序号</th>
                                         <th>学科名</th>
                                         <th>分数</th>
-                                        <th class="center">操作</th>
+                                        <th class="center">录入分数</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
+                                    <%--没有数据 - 提示信息--%>
+                                    <c:if test="${scoreList == null || scoreList.size() ==0}">
+                                        <tr>
+                                            <td style="color: red;text-align: center" colspan="4">
+                                                您还未选择任何课程，请先选修课程！
+                                            </td>
+                                        </tr>
+                                    </c:if>
                                     <c:forEach items="${scoreList}" var="score">
                                         <tr>
                                             <td>
-                                                ${score.id}
+                                                <c:out value="${score.id}"/>
                                             </td>
-                                            <td>${score.subjectName}</td>
-                                            <td>${score.score}</td>
+                                            <td><c:out value="${score.subjectName}"/></td>
+                                            <td><c:out value="${score.score}"/></td>
                                             <td class="center">
                                                 <div class="hidden-sm hidden-xs btn-group">
                                                     <a href="#entry-score" data-toggle="modal"
@@ -240,7 +249,8 @@
                                                 <input type="hidden" name="id" id="entry-score-id"/>
                                                 <div class="form-group ">
                                                     <div style="width: 70%;margin: auto">
-                                                        <input type="text" name="score" id="class-name" placeholder="填写分数"
+                                                        <input type="text" name="score" id="class-name"
+                                                               placeholder="填写分数 0~150 "
                                                                class="col-sm-7"/>
                                                     </div>
                                                 </div>

@@ -164,7 +164,7 @@
             <li class="">
                 <a href="goSubjectManager" class="">
                     <i class="menu-icon fa fa-list"></i>
-                    <span class="menu-text"> 学科信息管理 </span>
+                    <span class="menu-text"> 学科信息管理</span>
                 </a>
                 <b class="arrow"></b>
             </li>
@@ -201,12 +201,6 @@
                                 <table id="simple-table" class="table  table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="center">
-                                            <label class="pos-rel">
-                                                <input type="checkbox" class="ace"/>
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </th>
                                         <th class="detail-col">详情</th>
                                         <th>学号</th>
                                         <th>姓名</th>
@@ -221,15 +215,16 @@
                                     </thead>
 
                                     <tbody>
+                                    <%--没有数据 - 提示信息--%>
+                                    <c:if test="${pageResult.result == null || pageResult.result.size() ==0}">
+                                        <tr>
+                                            <td style="color: red;text-align: center" colspan="8">
+                                                暂无任何学生信息，请添加！
+                                            </td>
+                                        </tr>
+                                    </c:if>
                                     <c:forEach items="${pageResult.result}" var="student">
                                         <tr>
-                                            <td class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace"/>
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </td>
-
                                             <td class="center">
                                                 <div class="action-buttons">
                                                     <a href="#" class="green bigger-140 show-details-btn"
@@ -240,41 +235,47 @@
                                                 </div>
                                             </td>
 
-                                            <td>${student.number}</td>
-                                            <td>${student.name}</td>
-                                            <td class="hidden-480">${student.sex}</td>
+                                            <td><c:out value="${student.number}"/></td>
+                                            <td><c:out value="${student.name}"/></td>
+                                            <c:choose>
+                                                <c:when test="${student.sex.name() == 'Male'}">
+                                                    <td class="hidden-480">男</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="hidden-480">女</td>
+                                                </c:otherwise>
+                                            </c:choose>
                                             <c:forEach items="${student_grade}" var="grade">
-                                                <c:if test="${student.grade_id == grade.id && grade.state != '0'}">
-                                                    <td>${grade.classname}</td>
+                                                <c:if test="${student.grade.id == grade.id && grade.state != '0'}">
+                                                    <td><c:out value="${student.grade.classname}"/></td>
                                                 </c:if>
-                                                <c:if test="${student.grade_id == grade.id && grade.state == '0'}">
+                                                <c:if test="${student.grade.id == grade.id && grade.state == '0'}">
                                                     <td>暂无班级</td>
                                                 </c:if>
                                             </c:forEach>
-                                            <td>${student.sub_num}</td>
-                                            <td>${student.average}</td>
+                                            <td><c:out value="${student.subjects.size()}"/></td>
+                                            <td><c:out value="${student.average}"/></td>
 
                                             <td class="center">
                                                 <div class="hidden-sm hidden-xs btn-group">
                                                     <a href="goEntryScore?id=${student.id}"
-                                                       class="btn btn-xs btn-warning" title="分数录入">
+                                                       class="btn btn-xs btn-warning" title="录入已选课程分数">
                                                         <i class="ace-icon fa fa-flag bigger-120"></i>
                                                     </a>
-
                                                     <a href="goAddSubject?id=${student.id}"
-                                                       class="btn btn-xs btn-success" title="新增选课">
+                                                       class="btn btn-xs btn-success" title="选修课程">
                                                         <i class="ace-icon fa fa-check bigger-120"></i>
                                                     </a>
 
                                                     <a href="#update-student" data-toggle="modal"
                                                        class="btn btn-xs btn-info"
-                                                       title="修改学生信息"
-                                                       onclick="updateStudentInfo(${student.id},'${student.name}','${student.birthday}','${student.sex}',${student.grade_id})">
+                                                       title="修改该学生信息"
+                                                       onclick="updateStudentInfo(${student.id},'${student.name}','${student.birthday}','${student.sex}',${student.grade.id})">
                                                         <i class="ace-icon fa fa-pencil bigger-120"></i>
                                                     </a>
 
                                                     <a href="deleteStudent?id=${student.id}"
-                                                       class="btn btn-xs btn-danger" title="删除学生信息">
+                                                       class="btn btn-xs btn-danger" title="删除该学生信息">
                                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                     </a>
                                                 </div>
@@ -350,23 +351,31 @@
                                                                     <div class="profile-info-name"> 姓名</div>
 
                                                                     <div class="profile-info-value">
-                                                                        <span>${student.name}</span>
+                                                                        <span><c:out value="${student.name}"/></span>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="profile-info-row">
                                                                     <div class="profile-info-name"> 性别</div>
-
-                                                                    <div class="profile-info-value">
-                                                                        <span>${student.sex}</span>
-                                                                    </div>
+                                                                    <c:choose>
+                                                                        <c:when test="${student.sex.name() == 'Male'}">
+                                                                            <div class="profile-info-value">
+                                                                                <span>男</span>
+                                                                            </div>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <div class="profile-info-value">
+                                                                                <span>女</span>
+                                                                            </div>
+                                                                        </c:otherwise>
+                                                                    </c:choose>
                                                                 </div>
 
                                                                 <div class="profile-info-row">
                                                                     <div class="profile-info-name"> 学号</div>
 
                                                                     <div class="profile-info-value">
-                                                                        <span>${student.number}</span>
+                                                                        <span><c:out value="${student.number}"/></span>
                                                                     </div>
                                                                 </div>
 
@@ -374,7 +383,7 @@
                                                                     <div class="profile-info-name"> 序号</div>
 
                                                                     <div class="profile-info-value">
-                                                                        <span>${student.id}</span>
+                                                                        <span><c:out value="${student.id}"/></span>
                                                                     </div>
                                                                 </div>
 
@@ -382,7 +391,8 @@
                                                                     <div class="profile-info-name"> 生日</div>
 
                                                                     <div class="profile-info-value">
-                                                                        <span>${student.birthday}</span>
+                                                                        <span><c:out
+                                                                                value="${student.birthday}"/></span>
                                                                     </div>
                                                                 </div>
 
@@ -392,10 +402,10 @@
                                                                     <div class="profile-info-value">
                                                                         <c:forEach items="${student_grade}"
                                                                                    var="grade">
-                                                                            <c:if test="${student.grade_id == grade.id && grade.state != '0'}">
-                                                                                <span>${grade.classname}</span>
+                                                                            <c:if test="${student.grade.id == grade.id && grade.state != '0'}">
+                                                                                <span>${student.grade.classname}</span>
                                                                             </c:if>
-                                                                            <c:if test="${student.grade_id == grade.id && grade.state == '0'}">
+                                                                            <c:if test="${student.grade.id == grade.id && grade.state == '0'}">
                                                                                 <span>暂无班级</span>
                                                                             </c:if>
                                                                         </c:forEach>
@@ -410,7 +420,6 @@
                                             </td>
                                         </tr>
                                         <%--END 详情--%>
-
                                     </c:forEach>
                                     </tbody>
                                 </table>
@@ -441,8 +450,7 @@
                                                 <input type="file" name="file" onchange="previewImage(this)"
                                                        style="display: none;" id="previewImg">
                                             </div>
-                                            <input type="hidden" name="id" id="upload-studentId"
-                                                   value="">
+                                            <input type="hidden" name="id" id="upload-studentId" value="">
                                             <button style="margin-right: 48%;margin-top: 10px"
                                                     class="pull-right btn btn-sm btn-primary btn-white btn-round"
                                                     type="submit">
@@ -457,7 +465,6 @@
 
                                             <button type="submit" style="display: none"
                                                     class="btn btn-sm btn-primary">
-
                                             </button>
                                         </div>
                                     </form>
@@ -483,11 +490,11 @@
                                             <div class="form-group">
                                                 <label>性别：</label>
                                                 <label>
-                                                    <input name="sex" checked type="radio" value="男" class="ace"/>
+                                                    <input name="sex" checked type="radio" value="Male" class="ace"/>
                                                     <span class="lbl"> 男</span>
                                                 </label>
                                                 <label>
-                                                    <input name="sex" type="radio" value="女" class="ace"/>
+                                                    <input name="sex" type="radio" value="Female" class="ace"/>
                                                     <span class="lbl"> 女</span>
                                                 </label>
                                             </div>
@@ -499,7 +506,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>班级：</label>
-                                                <select class="" name="grade_id" style="width: 190px;"
+                                                <select class="" name="grade.id" style="width: 190px;"
                                                         id="form-field-select-1">
                                                     <option value="0"></option>
                                                     <c:forEach items="${student_grade}" var="grade">
@@ -548,11 +555,11 @@
                                                 <label>性别：</label>
                                                 <label>
                                                     <input id="update-sex-male" name="sex" checked type="radio"
-                                                           value="男" class="ace"/>
+                                                           value="Male" class="ace"/>
                                                     <span class="lbl"> 男</span>
                                                 </label>
                                                 <label>
-                                                    <input name="sex" id="update-sex-female" type="radio" value="女"
+                                                    <input name="sex" id="update-sex-female" type="radio" value="Female"
                                                            class="ace"/>
                                                     <span class="lbl"> 女</span>
                                                 </label>
@@ -566,6 +573,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>班级：</label>
+                                                <input type="hidden" id="update-grade-id" class="" name="grade.id">
                                                 <select class="" name="grade_id" style="width: 190px;"
                                                         id="form-field-select-2">
                                                     <option value="0"></option>
@@ -584,7 +592,8 @@
                                                 取消
                                             </button>
 
-                                            <button type="submit" class="btn btn-sm btn-primary">
+                                            <button onclick="updateInitGradeId()" type="submit"
+                                                    class="btn btn-sm btn-primary">
                                                 <i class="ace-icon fa fa-check"></i>
                                                 保存
                                             </button>
@@ -658,16 +667,19 @@
 
 <!-- inline scripts related to this page -->
 <script>
-    function updateStudentInfo(id, name, birthday, sex, grade_id) {
+    function updateStudentInfo(id, name, birthday, sex, gradeId) {
         $("#update-id").val(id);
         $("#update-name").val(name);
         $("#update-birthday").val(birthday);
-        document.updateform.grade_id.value = grade_id;// 班级ID
+        document.updateform.grade_id.value = gradeId;// 班级ID
         if (sex == "女") {
             $("#update-sex-female").attr("checked", "checked");
         } else {
             $("#update-sex-male").attr("checked", "checked");
         }
+    }
+    function updateInitGradeId() {
+        $("#update-grade-id").val($("#form-field-select-2").val());
     }
     /*图片上传-初始化学生ID*/
     function uploadInitStudentId(id) {
@@ -675,6 +687,34 @@
     }
 </script>
 <script type="text/javascript">
+    //    确认选修课程
+    function selectLesson(id) {
+        var disabled = confirm("确认禁用文章？");
+        if (disabled) {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "${webroot}/platform/article/disabledArticle.do",
+                data: {
+                    'id': articleId
+                },
+                async: false,
+                dataType: "json",
+                error: function (data) {
+                    layer.msg(data.msg);
+                    return false;
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.code != 0) {
+                        layer.msg(data.msg);
+                    } else {
+                        $('#article_table').bootstrapTable('refresh');
+                    }
+                }
+            });
+        }
+    }
     jQuery(function ($) {
         /*头像上传*/
         $('#upload-picture').on('shown.bs.modal', function () {
